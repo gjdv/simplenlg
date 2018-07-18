@@ -1080,8 +1080,8 @@ abstract public class Feature {
 	 */
 	public static final String TENSE = "tense";
 	
-	/** Added by GJdV
-	 *  whether the word should be capitalized (first letter); specifically added for Noun's
+	/** 
+	 *  Whether the word should be capitalized (first letter)
 	 */
 	public static final String IS_CAPITALIZED = "is_capitalized";
 }

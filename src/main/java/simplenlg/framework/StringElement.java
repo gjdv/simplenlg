@@ -57,7 +57,7 @@ public class StringElement extends NLGElement {
 	 * @param isCapitalized
 	 *            whether this string element is be capitalized.
 	 */
-	public StringElement(String value, boolean isCapitalized) { // adapted by GJdV
+	public StringElement(String value, boolean isCapitalized) {
 		setCategory(PhraseCategory.CANNED_TEXT);
 		setFeature(Feature.ELIDED, false);
 		setFeature(Feature.IS_CAPITALIZED, isCapitalized);

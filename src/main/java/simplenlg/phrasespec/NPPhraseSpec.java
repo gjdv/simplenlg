@@ -79,7 +79,7 @@ public class NPPhraseSpec extends PhraseElement {
 	public NPPhraseSpec(NLGFactory phraseFactory) {
 		super(PhraseCategory.NOUN_PHRASE);
 		this.setFactory(phraseFactory);
-		setFeature(Feature.IS_CAPITALIZED, false); //added by GJdV, some default value
+		setFeature(Feature.IS_CAPITALIZED, false);
 	}
 
 	/*
@@ -141,7 +141,7 @@ public class NPPhraseSpec extends PhraseElement {
 		}
 
 		setFeature(Feature.ADJECTIVE_ORDERING, true);
-		setFeature(Feature.IS_CAPITALIZED, false); //added by GJdV, some default value
+		setFeature(Feature.IS_CAPITALIZED, false);
 	}
 
 	/**

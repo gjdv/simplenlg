@@ -801,7 +801,7 @@ public abstract class NLGElement {
 		return eq;
 	}
 
-	public boolean isCapitalized() { // added by GJdV
+	public boolean isCapitalized() {
 		if (features.containsKey(Feature.IS_CAPITALIZED)) {
 			return (boolean) getFeature(Feature.IS_CAPITALIZED);
 		}

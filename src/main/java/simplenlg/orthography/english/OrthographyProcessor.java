@@ -241,7 +241,7 @@ public class OrthographyProcessor extends NLGModule {
 				realisedElement.setRealisation(realisation);
 			}
 		}
-		if (element.isCapitalized()) { // added by GJdV
+		if (element.isCapitalized()) {
 			String realisation = realisedElement.getRealisation();
 			realisedElement.setRealisation(realisation.substring(0, 1).toUpperCase() + realisation.substring(1));
 		}
