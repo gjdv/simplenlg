@@ -19,6 +19,7 @@
 package simplenlg.framework;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +46,21 @@ public class StringElement extends NLGElement {
 	 *            the text for this string element.
 	 */
 	public StringElement(String value) {
+		this(value,false);
+	}
+	
+	/**
+	 * Constructs a new string element representing some canned text.
+	 * 
+	 * @param value
+	 *            the text for this string element.
+	 * @param isCapitalized
+	 *            whether this string element is be capitalized.
+	 */
+	public StringElement(String value, boolean isCapitalized) { // adapted by GJdV
 		setCategory(PhraseCategory.CANNED_TEXT);
 		setFeature(Feature.ELIDED, false);
+		setFeature(Feature.IS_CAPITALIZED, isCapitalized);
 		setRealisation(value);
 	}
 
@@ -89,7 +103,17 @@ public class StringElement extends NLGElement {
 		Map<String, Object> features = this.getAllFeatures();
 
 		if (features != null) {
-			print.append(", features=").append(features.toString()); //$NON-NLS-1$
+			print.append(", features={");
+			List<String> keyList = new ArrayList<String>(features.keySet());
+			Collections.sort(keyList);
+			for (String eachFeature : keyList) {
+				print.append(eachFeature).append('=').append(
+						features.get(eachFeature).toString()).append(", ");
+			}
+			if (!keyList.isEmpty()) {
+				print.delete(print.length()-2, print.length());
+			}
+			print.append("}"); //$NON-NLS-1$
 		}
 		print.append('\n');
 		return print.toString();

@@ -20,6 +20,7 @@ package simplenlg.framework;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -583,7 +584,17 @@ public abstract class NLGElement {
 			buffer.append(", category=").append(this.category.toString()); //$NON-NLS-1$
 		}
 		if (this.features != null) {
-			buffer.append(", features=").append(this.features.toString()); //$NON-NLS-1$
+			buffer.append(", features={");
+			List<String> keyList = new ArrayList<String>(features.keySet());
+			Collections.sort(keyList);
+			for (String eachFeature : keyList) {
+				buffer.append(eachFeature).append('=').append(
+						features.get(eachFeature).toString()).append(", ");
+			}
+			if (!keyList.isEmpty()) {
+				buffer.delete(buffer.length()-2,buffer.length());
+			}
+			buffer.append("}"); //$NON-NLS-1$
 		}
 		buffer.append('}');
 		return buffer.toString();
@@ -790,4 +801,13 @@ public abstract class NLGElement {
 		return eq;
 	}
 
+	public boolean isCapitalized() { // added by GJdV
+		if (features.containsKey(Feature.IS_CAPITALIZED)) {
+			return (boolean) getFeature(Feature.IS_CAPITALIZED);
+		}
+		else {
+			return false;
+		}
+	}
+	
 }

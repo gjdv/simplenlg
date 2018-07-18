@@ -19,8 +19,10 @@
 package simplenlg.framework;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import simplenlg.features.InternalFeature;
 
@@ -139,9 +141,11 @@ public class ListElement extends NLGElement {
 		print.append("ListElement: features={"); //$NON-NLS-1$
 
 		Map<String, Object> features = getAllFeatures();
-		for (String eachFeature : features.keySet()) {
+		List<String> keyList = new ArrayList<String>(features.keySet());
+		Collections.sort(keyList);
+		for (String eachFeature : keyList) {
 			print.append(eachFeature).append('=').append(
-					features.get(eachFeature).toString()).append(' ');
+					features.get(eachFeature).toString()).append(", ");
 		}
 		print.append("}\n"); //$NON-NLS-1$
 

@@ -19,6 +19,7 @@
 package simplenlg.framework;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -543,9 +544,14 @@ public class PhraseElement extends NLGElement {
 				.append(getCategory().toString()).append(", features={"); //$NON-NLS-1$
 
 		Map<String, Object> features = getAllFeatures();
-		for (String eachFeature : features.keySet()) {
+		List<String> keyList = new ArrayList<String>(features.keySet());
+		Collections.sort(keyList);
+		for (String eachFeature : keyList) {
 			print.append(eachFeature).append('=').append(
-					features.get(eachFeature).toString()).append(' ');
+					features.get(eachFeature).toString()).append(", ");
+		}
+		if (!keyList.isEmpty()) {
+			print.delete(print.length()-2, print.length());
 		}
 		print.append("}\n"); //$NON-NLS-1$
 		List<NLGElement> children = getChildren();

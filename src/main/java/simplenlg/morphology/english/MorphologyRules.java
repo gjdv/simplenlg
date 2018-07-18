@@ -137,7 +137,7 @@ public abstract class MorphologyRules extends NLGModule {
 		}
 
 		checkPossessive(element, realised);
-		StringElement realisedElement = new StringElement(realised.toString());
+		StringElement realisedElement = new StringElement(realised.toString(), element.isCapitalized()); // adapted by GJdV
 		realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
 		                           element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
 		return realisedElement;

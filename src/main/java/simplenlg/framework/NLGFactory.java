@@ -366,6 +366,7 @@ public class NLGFactory {
 			wordElement.setFeature(InternalFeature.NON_MORPH, true);
 			wordElement.setFeature(LexicalFeature.EXPLETIVE_SUBJECT, true);
 		}
+		wordElement.setFeature(Feature.IS_CAPITALIZED, false); //added by GJdV, some default value
 	}
 
 	/**

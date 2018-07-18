@@ -241,7 +241,10 @@ public class OrthographyProcessor extends NLGModule {
 				realisedElement.setRealisation(realisation);
 			}
 		}
-
+		if (element.isCapitalized()) { // added by GJdV
+			String realisation = realisedElement.getRealisation();
+			realisedElement.setRealisation(realisation.substring(0, 1).toUpperCase() + realisation.substring(1));
+		}
 		//remove preceding and trailing whitespace from internal punctuation
 		removePunctSpace(realisedElement);
 		return realisedElement;

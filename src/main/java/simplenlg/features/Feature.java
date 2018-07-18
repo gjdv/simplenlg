@@ -1079,4 +1079,9 @@ abstract public class Feature {
 	 * </table>
 	 */
 	public static final String TENSE = "tense";
+	
+	/** Added by GJdV
+	 *  whether the word should be capitalized (first letter); specifically added for Noun's
+	 */
+	public static final String IS_CAPITALIZED = "is_capitalized";
 }

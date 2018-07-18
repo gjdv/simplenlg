@@ -105,6 +105,7 @@ public class VPPhraseSpec extends PhraseElement {
 		setPlural(false);
 		setFeature(Feature.FORM, Form.NORMAL);
 		setFeature(InternalFeature.REALISE_AUXILIARY, true);
+		setFeature(Feature.IS_CAPITALIZED, false); //added by GJdV, some default value
 	}
 	
 	/** sets the verb (head) of a verb phrase.

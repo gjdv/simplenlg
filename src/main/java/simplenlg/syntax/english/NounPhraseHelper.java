@@ -124,6 +124,8 @@ abstract class NounPhraseHelper {
 					.getFeature(Feature.POSSESSIVE));
 			headElement.setFeature(Feature.PASSIVE, phrase
 					.getFeature(Feature.PASSIVE));
+			headElement.setFeature(Feature.IS_CAPITALIZED, phrase
+					.getFeature(Feature.IS_CAPITALIZED));
 			NLGElement currentElement = parent.realise(headElement);
 			currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
 					DiscourseFunction.SUBJECT);
