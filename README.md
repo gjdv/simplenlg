@@ -1,4 +1,12 @@
-[![Build Status](https://travis-ci.org/simplenlg/simplenlg.svg?branch=master)](https://travis-ci.org/simplenlg/simplenlg)
+[![Build Status](https://travis-ci.org/gjdv/simplenlg.svg?branch=master)](https://travis-ci.org/gjdv/simplenlg)
+
+SimpleNLG fork by GJdV
+=========
+
+This fork is based upon [SimpleNLG](https://github.com/simplenlg/simplenlg). The following changes have been made:
+
+* Addition of feature "IS_CAPITALIZED" to allow storing of (first letter) capitalization of words, decapitalizing them during the processing (realisation) and capitalizing them again during orthographic realisation. This can come in handy when using (capitalized) names, while requiring correct pluralization.
+
 
 
 SimpleNLG
