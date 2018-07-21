@@ -803,7 +803,7 @@ public abstract class NLGElement {
 
 	public boolean isCapitalized() {
 		if (features.containsKey(Feature.IS_CAPITALIZED)) {
-			return (boolean) getFeature(Feature.IS_CAPITALIZED);
+			return (boolean) getFeatureAsBoolean(Feature.IS_CAPITALIZED);
 		}
 		else {
 			return false;
