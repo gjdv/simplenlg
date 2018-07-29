@@ -1,12 +1,40 @@
 [![Build Status](https://travis-ci.org/gjdv/simplenlg.svg?branch=master)](https://travis-ci.org/gjdv/simplenlg)
 
 SimpleNLG fork by GJdV
-=========
+======================
 
 This fork is based upon [SimpleNLG](https://github.com/simplenlg/simplenlg). The following changes have been made:
 
-* Addition of feature "IS_CAPITALIZED" to allow storing of (first letter) capitalization of words, decapitalizing them during the processing (realisation) and capitalizing them again during orthographic realisation. This can come in handy when using (capitalized) names, while requiring correct pluralization.
+Additions
+---------
 
+* Addition of feature "IS_CAPITALIZED" to allow storing of (first letter) capitalization of words, decapitalizing them during the processing (realisation) and capitalizing them again during orthographic realisation. This can come in handy when using (capitalized) names, while requiring correct pluralization.
+* Port of SimpleNLG to C#. 
+
+
+Port to C#
+----------
+The port to C# was made for better integration in C# projects. Note that the C# code could be optimized further, however, it was chosen to stay close to the original to aid in maintenance when updates are made to the original SimpleNLG code. 
+The ported unit tests were used to verify correctness of the port. Currently 19 tests fail due to current unavailability of the NIHDB lexicon in the port (see "Known Issues").
+At this moment, there is still a dependency on java via IKVM in order to interact with the HSQdb containing the NIHDB lexicon, but the aim is to remove this dependency in a later version. The default lexicon can be used without any dependency on java.
+
+
+Known issues
+------------
+
+* NIHDB lexicon not working (port of LexAccessApi not yet finished).
+
+&nbsp;
+
+Below you can find the original README from SimpleNLG:
+
+&nbsp;
+
+&nbsp;
+
+___
+
+&nbsp;
 
 
 SimpleNLG

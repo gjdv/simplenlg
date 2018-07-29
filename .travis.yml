@@ -1,6 +1,11 @@
-language: java
-script: mvn test
-after_script: mvn clean
-jdk:
-  - oraclejdk8
-  - openjdk7
+matrix:
+  include:
+    - language: java
+      script: mvn test
+      after_script: mvn clean
+      jdk:
+        - oraclejdk8
+        - openjdk7
+  
+    - language: csharp
+      solution: srcCsharp/SimpleNLG.sln
