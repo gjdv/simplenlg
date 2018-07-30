@@ -6,10 +6,10 @@ matrix:
       jdk:
         - oraclejdk8
 #        - openjdk7
-		
+
     - language: csharp
       solution: srcCsharp/SimpleNLG.sln
       before-install:
         - sudo apt-get install unzip
-		- unzip src/test/resources/NIHLexicon/lexAccess2013.data.zip
-		- mv lexAccess2013.data srcCsharp/Resources/NIHLexicon/
+        - unzip src/test/resources/NIHLexicon/lexAccess2013.data.zip
+        - mv lexAccess2013.data srcCsharp/Resources/NIHLexicon/
