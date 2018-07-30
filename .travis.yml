@@ -5,6 +5,11 @@ matrix:
       after_script: mvn clean
       jdk:
         - oraclejdk8
+		
+    - language: java
+      script: mvn test
+      after_script: mvn clean
+      jdk:
         - openjdk7
   
     - language: csharp
