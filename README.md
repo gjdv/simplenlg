@@ -23,6 +23,7 @@ Known issues
 ------------
 
 * NIHDB lexicon not working (port of LexAccessApi not yet finished).
+* C# Unit tests not executed by Travis (as MSTest framework is not supported)
 
 &nbsp;
 
