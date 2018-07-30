@@ -14,4 +14,6 @@ matrix:
       solution: srcCsharp/SimpleNLG.sln
       before_install:
         - sudo apt-get install unzip
+        - cp src/test/resources/NIHLexicon/lexAccess2013.script srcCsharp/Resources/NIHLexicon/
+        - cp src/test/resources/NIHLexicon/lexAccess2013.properties srcCsharp/Resources/NIHLexicon/
         - unzip src/test/resources/NIHLexicon/lexAccess2013.data.zip -d srcCsharp/Resources/NIHLexicon/
