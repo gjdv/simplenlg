@@ -24,4 +24,4 @@ matrix:
         - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner
       script:
        - msbuild /p:Configuration=Release srcCsharp/SimpleNLG.sln
-       - mono ./testrunner/NUnit.Runners.3.8.0/tools/nunit-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll
+       - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll
