@@ -19,4 +19,9 @@ matrix:
         - unzip $RESOURCE_DIR/lexAccess2011.sqlite.zip -d $RESOURCE_DIR
         - unzip $RESOURCE_DIR/lexAccess2013.sqlite.zip -d $RESOURCE_DIR
         - unzip $RESOURCE_DIR/lexAccess2016.sqlite.zip -d $RESOURCE_DIR
-
+      install:
+        - nuget restore srcCsharp/SimpleNLG.sln
+        - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner
+      script:
+       - xbuild /p:Configuration=Release srcCsharp/SimpleNLG.sln
+       - mono ./testrunner/NUnit.Runners.3.8.0/tools/nunit-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll
