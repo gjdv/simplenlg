@@ -24,8 +24,9 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.server;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.server
 {
@@ -34,19 +35,19 @@ namespace SimpleNLG.Test.server
      *
      * @author Roman Kutlak
      */
-    [TestClass]
+    [TestFixture]
     public class ServerTest
     {
         private SimpleServer serverapp;
         private TcpListener socket;
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             try
             {
-                IPAddress ipAddress = IPAddress.Parse("localhost");
-                socket = new TcpListener(ipAddress, 0);
+                IPAddress ipAddress = IPAddress.Parse("127.0.0.1"); //localhost
+                socket = new TcpListener(ipAddress, 8888);
                 serverapp = new SimpleServer(socket);
                 Thread server = new Thread(new ThreadStart(serverapp.Run));
                 server.IsBackground = true;
@@ -60,13 +61,13 @@ namespace SimpleNLG.Test.server
             }
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             serverapp.terminate();
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testServer()
         {
             Assert.IsNotNull(serverapp);

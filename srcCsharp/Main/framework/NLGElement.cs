@@ -20,6 +20,7 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -227,7 +228,14 @@ namespace SimpleNLG.Main.framework
 
 			if (value != null)
 			{
-				stringValue = value.ToString();
+			    if (value is IList<NLGElement>)
+			    {
+			        stringValue = ((IList<NLGElement>) value).ToStringNLG<NLGElement>();
+			    }
+			    else
+			    {
+			        stringValue = value.ToString();
+			    }
 			}
 			return stringValue;
 		}

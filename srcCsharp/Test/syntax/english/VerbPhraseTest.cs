@@ -20,7 +20,7 @@
  */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
@@ -45,7 +45,7 @@ namespace SimpleNLG.Test.syntax.english
      * These are tests for the verb phrase and coordinate VP classes.
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public class VerbPhraseTest : SimpleNLG4Test
     {
         public VerbPhraseTest() : this(null)
@@ -67,7 +67,7 @@ namespace SimpleNLG.Test.syntax.english
          * Some tests to check for an early bug which resulted in reduplication of
          * verb particles in the past tense e.g. "fall down down" or "creep up up"
          */
-        [TestMethod]
+        [Test]
         public virtual void testVerbParticle()
         {
             VPPhraseSpec v = phraseFactory.createVerbPhrase("fall down"); //$NON-NLS-1$
@@ -89,7 +89,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for the tense and aspect.
          */
-        [TestMethod]
+        [Test]
         public virtual void simplePastTest()
         {
             // "fell down"
@@ -100,7 +100,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test tense aspect.
          */
-        [TestMethod]
+        [Test]
         public virtual void tenseAspectTest()
         {
             // had fallen down
@@ -153,7 +153,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for realisation of VP complements.
          */
-        [TestMethod]
+        [Test]
         public virtual void complementationTest()
         {
             // was kissing Mary
@@ -206,7 +206,7 @@ namespace SimpleNLG.Test.syntax.english
          * This tests for the default complement ordering, relative to pre and
          * postmodifiers.
          */
-        [TestMethod]
+        [Test]
         public virtual void complementationTest_2()
         {
             // give the woman the dog
@@ -268,7 +268,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for complements raised in the passive case.
          */
-        [TestMethod]
+        [Test]
         public virtual void passiveComplementTest()
         {
             // add some arguments
@@ -301,7 +301,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test VP with sentential complements. This tests for structures like "said
          * that John was walking"
          */
-        [TestMethod]
+        [Test]
         public virtual void clausalComplementTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -403,7 +403,7 @@ namespace SimpleNLG.Test.syntax.english
          * <LI>2. We can aggregate the coordinate VP so it's realised with one
          * wide-scope auxiliary</LI>
          */
-        [TestMethod]
+        [Test]
         public virtual void coordinationTest()
         {
             // simple case

@@ -21,7 +21,9 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Reflection;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -29,6 +31,7 @@ using SimpleNLG.Main.phrasespec;
 using SimpleNLG.Main.realiser.english;
 using SimpleNLG.Main.server;
 using SimpleNLG.Main.xmlrealiser;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.lexicon.english
 {
@@ -45,7 +48,7 @@ namespace SimpleNLG.Test.lexicon.english
     using SPhraseSpec = SPhraseSpec;
     using Realiser = Realiser;
 
-    [TestClass]
+    [TestFixture]
     /**
      * Tests on the use of spelling and inflectional variants, using the
      * NIHDBLexicon.
@@ -64,13 +67,15 @@ namespace SimpleNLG.Test.lexicon.english
         // realiser
         internal Realiser realiser;
 
-        internal static string BASE_DIRECTORY = @"../../";
+        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
 
         // DB location -- change this to point to the lex access data dir
         internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             "Resources/NIHLexicon/lexAccess2011.data";
+                                             "Resources/NIHLexicon/lexAccess2011.sqlite";
 
-        [TestInitialize]
+        internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
+
+        [SetUp]
         /**
          * Sets up the accessor and runs it -- takes ca. 26 sec
          */
@@ -91,10 +96,19 @@ namespace SimpleNLG.Test.lexicon.english
                     lexiconType = "XML";
                 }
 
-                if ("NIH".Equals(lexiconType))
+                if (lexiconType == "NIH" || lexiconType == "NIH_HSQL")
                 {
                     // NIH lexicon
-                    lexicon = new NIHDBLexicon(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + prop.getProperty("DB_FILENAME"));
+                    lexicon = new NIHDBLexicon(
+                        BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + prop.getProperty("DB_FILENAME"),
+                        XMLRealiser.LexiconType.NIHDB_HSQL);
+                }
+                else if (lexiconType == "NIH_SQLITE")
+                {
+                    // NIH lexicon
+                    lexicon = new NIHDBLexicon(
+                        BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + prop.getProperty("DB_FILENAME"),
+                        XMLRealiser.LexiconType.NIHDB_SQLITE);
                 }
                 else
                 {
@@ -105,7 +119,7 @@ namespace SimpleNLG.Test.lexicon.english
             }
             catch (Exception)
             {
-                lexicon = new NIHDBLexicon(DB_FILENAME);
+                lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             }
 
             factory = new NLGFactory(lexicon);
@@ -115,7 +129,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Close the lexicon
          */
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             if (lexicon != null)
@@ -127,7 +141,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * check that spelling variants are properly set
          */
-        [TestMethod]
+        [Test]
         public virtual void spellingVariantsTest()
         {
             WordElement asd = lexicon.getWord("Adams-Stokes disease");
@@ -150,7 +164,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Test spelling/orthographic variants with different inflections
          */
-        [TestMethod]
+        [Test]
         public virtual void spellingVariantWithInflectionTest()
         {
             WordElement word = lexicon.getWord("formalization");
@@ -173,7 +187,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Test the inflectional variants for a verb.
          */
-        [TestMethod]
+        [Test]
         public virtual void verbInflectionalVariantsTest()
         {
             WordElement word = lexicon.getWord("lie", new LexicalCategory(LexicalCategory.LexicalCategoryEnum.VERB));
@@ -205,7 +219,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Test inflectional variants for nouns
          */
-        [TestMethod]
+        [Test]
         public virtual void nounInflectionalVariantsTest()
         {
             WordElement word =
@@ -238,7 +252,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Check that spelling variants are preserved during realisation of NPs
          */
-        [TestMethod]
+        [Test]
         public virtual void spellingVariantsInNPTest()
         {
             WordElement asd = lexicon.getWord("Adams-Stokes disease");
@@ -267,7 +281,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Check that spelling variants are preserved during realisation of VPs
          */
-        [TestMethod]
+        [Test]
         public virtual void spellingVariantsInVPTest()
         {
             WordElement eth = (WordElement) factory.createWord("etherise",
@@ -283,7 +297,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Test the difference between an uncount and a count noun
          */
-        [TestMethod]
+        [Test]
         public virtual void uncountInflectionalVariantTest()
         {
             WordElement calc = (WordElement) factory.createWord("calcification",

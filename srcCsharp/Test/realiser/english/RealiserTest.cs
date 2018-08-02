@@ -20,7 +20,7 @@
  */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -48,7 +48,7 @@ namespace SimpleNLG.Test.realiser.english
      * 
      * @author Saad Mahamood
      */
-    [TestClass]
+    [TestFixture]
     public class RealiserTest
     {
         private Lexicon lexicon;
@@ -56,7 +56,7 @@ namespace SimpleNLG.Test.realiser.english
         private Realiser realiser = null;
 
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = Lexicon.DefaultLexicon;
@@ -68,7 +68,7 @@ namespace SimpleNLG.Test.realiser.english
         /**
          * Test the realization of List of NLGElements that is null
          */
-        [TestMethod]
+        [Test]
         public virtual void emptyNLGElementRealiserTest()
         {
             List<NLGElement> elements = new List<NLGElement>();
@@ -82,7 +82,7 @@ namespace SimpleNLG.Test.realiser.english
         /**
          * Test the realization of List of NLGElements that is null
          */
-        [TestMethod]
+        [Test]
         public virtual void nullNLGElementRealiserTest()
         {
             List<NLGElement> elements = null;
@@ -95,7 +95,7 @@ namespace SimpleNLG.Test.realiser.english
         /**
          * Tests the realization of multiple NLGElements in a list.
          */
-        [TestMethod]
+        [Test]
         public virtual void multipleNLGElementListRealiserTest()
         {
             List<NLGElement> elements = new List<NLGElement>();
@@ -150,7 +150,7 @@ namespace SimpleNLG.Test.realiser.english
         /**
          * Tests the correct pluralization with possessives (GitHub issue #9)
          */
-        [TestMethod]
+        [Test]
         public virtual void correctPluralizationWithPossessives()
         {
             NPPhraseSpec sisterNP = nlgFactory.createNounPhrase("sister");

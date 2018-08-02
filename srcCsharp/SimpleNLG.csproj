@@ -34,24 +34,22 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IKVM.OpenJDK.Core, Version=0.46.0.1, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc, Version=0.46.0.1, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime, Version=0.46.0.1, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\IKVM.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Org.Hsqldb, Version=1.8.1.3, Culture=neutral, PublicKeyToken=05732303801b208f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Org.Hsqldb.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.EF6.1.0.108.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +58,170 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Main\lexicon\util\lexAccess\Api\LexAccessApi.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Api\LexAccessApiResult.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Db\DbBase.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Db\DbInflVars.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Db\DbLexRecord.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Db\StringHelper.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Lib\Configuration.cs" />
+    <Compile Include="Main\lexicon\util\lexAccess\Lib\GlobalVars.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Api\ApiOutput.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Api\ToAgreementsApi.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Api\ToInflVarsApi.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Api\ToJavaObjApi.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Api\ToXmlApi.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\CheckAdj.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\CheckFormatAdjCompl.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\CheckFormatAdjNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\CheckFormatAdjPosition.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\CheckFormatAdjVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\UpdateAdjCompl.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\UpdateAdjNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\UpdateAdjPosition.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\UpdateAdjStative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adj\UpdateAdjVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\CheckAdv.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\CheckFormatAdvModification.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\CheckFormatAdvVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\UpdateAdvInterrogative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\UpdateAdvModification.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\UpdateAdvNegative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Adv\UpdateAdvVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Auxi\CheckAux.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Auxi\CheckFormatAuxVariant.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Auxi\UpdateAuxVariant.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\CheckCatEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\CheckFormatCat.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Det\CheckDet.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Det\CheckFormatDetVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Det\UpdateDetDemonstrative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Det\UpdateDetInterrogative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Det\UpdateDetVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Modal\CheckFormatModalVariant.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Modal\CheckModal.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Modal\UpdateModalVariant.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\CheckFormatNounCompl.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\CheckFormatNounNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\CheckFormatNounVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\CheckNoun.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounCompl.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounProper.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounTradeMark.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounTradeName.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Noun\UpdateNounVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\CheckFormatPronGender.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\CheckFormatPronType.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\CheckFormatPronVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\CheckPron.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\UpdatePronGender.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\UpdatePronInterrogative.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\UpdatePronType.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Pron\UpdatePronVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbCplxtran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbDitran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbIntran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbLink.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbTran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckFormatVerbVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\CheckVerb.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbCplxtran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbDitran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbIntran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbLink.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbNominalization.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbTran.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Cat\Verb\UpdateVerbVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\BaseComparator.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckAbbreviations.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckAcronyms.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckCategory.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckCitation.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckContent.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckEui.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckLexRecord.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckNominalizations.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckSpellingVars.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CheckVariants.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckAbbEui.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckAcrEui.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckDupEuis.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckDupLexRecords.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckLexRecords.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckNomEui.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\CrossCheckNomSym.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\ErrMsgUtil.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\ErrMsgUtilLexicon.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\ErrMsgUtilLexRecord.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\KeyValuesTable.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\LexRecordNomObj.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\LexRecordUtil.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CheckCont\SetTable.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CkLib\CheckCode.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CkLib\CheckObject.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\CkLib\LineCheck.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckAsComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckBinfComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckEdComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckFinComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckInfComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckIngComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckInterpretation.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckNpComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckParticle.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckPphr.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckPreposition.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckWhfinComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Compl\CheckWhinfComp.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\CheckFormatAbbreviation.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\CheckFormatAcronym.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\CheckFormatEui.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\CheckGrammer.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateAbbreviation.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateAcronym.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateAnnotation.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateBase.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateCat.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateEnd.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateSignature.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Gram\UpdateSpellingVar.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\AdjEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\AdvEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\Agreement.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\AuxEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\CatEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\CheckFillerFormat.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\CheckFormat.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\CheckSt.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\Configuration.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\Convert.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\DetEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\ErrMsg.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\GlobalVars.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\InflVar.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\InflVarComparator.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\InflVarsAndAgreements.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\LexRecord.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\LineObject.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\ModalEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\NounEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\PronEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\TextLib.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\TokenObject.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\UpdateLex.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\VerbEntry.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Lib\XmlLib.cs" />
+    <Compile Include="Main\lexicon\SqliteAccess.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Tools\LexCrossCheck.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Tools\ToXmlFromTextFile.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Tools\ValidateContentFromTextFile.cs" />
+    <Compile Include="Main\lexicon\util\lexCheck\Tools\ValidateSyntaxFromTextFile.cs" />
+    <Compile Include="Main\lexicon\util\lvg\BitMaskBase.cs" />
+    <Compile Include="Main\lexicon\util\lvg\Category.cs" />
     <Compile Include="Main\server\Properties.cs" />
     <Compile Include="Main\server\RealisationRequest.cs" />
     <Compile Include="Main\server\SimpleClient.cs" />
@@ -165,14 +327,25 @@
     <Compile Include="Main\xmlrealiser\XMLRealiserException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\lexicon.properties">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\NIHLexicon\lexAccess2013.data">
+    <None Include="Resources\NIHLexicon\irregExceptions.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\NIHLexicon\lexAccess2011.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\NIHLexicon\lexAccess2013.properties" />
-    <None Include="Resources\NIHLexicon\lexAccess2013.script" />
+    <None Include="Resources\NIHLexicon\lexAccess2013.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\NIHLexicon\lexAccess2016.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\NIHLexicon\prepositions.data">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\wordlists.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -190,4 +363,11 @@
     <Content Include="Resources\xml\Request.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
 </Project>

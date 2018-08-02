@@ -114,7 +114,7 @@ namespace SimpleNLG.Main
     public static class StringExtensions
     {
 
-        internal static sbyte[] GetBytes(this string self, Encoding encoding)
+        public static sbyte[] GetBytes(this string self, Encoding encoding)
         {
             //get the byte array
             byte[] bytes = encoding.GetBytes(self);
@@ -123,6 +123,11 @@ namespace SimpleNLG.Main
             for (int i = 0; i < bytes.Length; i++)
                 sbytes[i] = (sbyte)bytes[i];
             return sbytes;
+        }
+
+        public static string SubstringSpecial(this string self, int start, int end)
+        {
+            return self.Substring(start, end - start);
         }
 
     }

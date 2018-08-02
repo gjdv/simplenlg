@@ -19,10 +19,11 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -49,7 +50,7 @@ namespace SimpleNLG.Test.syntax.english
     /**
      * The Class STest.
      */
-    [TestClass]
+    [TestFixture]
     public class ClauseTest : SimpleNLG4Test
     {
         // set up a few more fixtures
@@ -75,7 +76,7 @@ namespace SimpleNLG.Test.syntax.english
          *
          * @see simplenlg.test.SimplenlgTest#setUp()
          */
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -122,7 +123,7 @@ namespace SimpleNLG.Test.syntax.english
             s4.setFeature(Feature.TENSE, Tense.FUTURE);
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -137,7 +138,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Initial test for basic sentences.
          */
-        [TestMethod]
+        [Test]
         public virtual void testBasic()
         {
             Assert.AreEqual("the woman kisses the man", realiser.realise(s1).Realisation); //$NON-NLS-1$
@@ -152,7 +153,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test did not
          */
-        [TestMethod]
+        [Test]
         public virtual void testDidNot()
         {
             PhraseElement s = phraseFactory.createClause("John", "eat");
@@ -165,7 +166,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test did not
          */
-        [TestMethod]
+        [Test]
         public virtual void testVPNegation()
         {
             PhraseElement vp = phraseFactory.createVerbPhrase("lie");
@@ -183,7 +184,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test that pronominal args are being correctly cast as NPs.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPronounArguments()
         {
             // the subject of s2 should have been cast into a pronominal NP
@@ -195,7 +196,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for setting tense, aspect and passive from the sentence interface.
          */
-        [TestMethod]
+        [Test]
         public virtual void testTenses()
         {
             // simple past
@@ -230,7 +231,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test what happens when a sentence is subordinated as complement of a
          * verb.
          */
-        [TestMethod]
+        [Test]
         public virtual void testSubordination()
         {
             // subordinate sentence by setting it as complement of a verb
@@ -248,7 +249,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the various forms of a sentence, including subordinates.
          */
-        [TestMethod]
+        [Test]
         public virtual void testForm()
         {
             // check the getter method
@@ -310,7 +311,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Slightly more complex tests for forms.
          */
-        [TestMethod]
+        [Test]
         public virtual void testForm2()
         {
             // set s4 as subject of a new sentence
@@ -364,7 +365,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for gerund forms and genitive subjects.
          */
-        [TestMethod]
+        [Test]
         public virtual void testGerundsubject()
         {
             // the man's giving the woman John's flower upset Peter
@@ -388,7 +389,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Some tests for multiple embedded sentences.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplexSentence1()
         {
             setUp();
@@ -450,7 +451,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * More coordination tests.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplexSentence3()
         {
             setUp();
@@ -497,7 +498,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests recogition of strings in API.
          */
-        [TestMethod]
+        [Test]
         public virtual void testStringRecognition()
         {
             // test recognition of forms of "be"
@@ -524,7 +525,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests complex agreement.
          */
-        [TestMethod]
+        [Test]
         public virtual void testAgreement()
         {
             // basic agreement
@@ -565,7 +566,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests passive.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPassive()
         {
             // passive with just complement
@@ -649,7 +650,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test that complements set within the VP are raised when sentence is
          * passivised.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPassiveWithInternalVPComplement()
         {
             PhraseElement vp = phraseFactory.createVerbPhrase(phraseFactory.createWord("upset",
@@ -666,7 +667,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests tenses with modals.
          */
-        [TestMethod]
+        [Test]
         public virtual void testModal()
         {
             setUp();
@@ -714,7 +715,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for passivisation with mdoals
          */
-        [TestMethod]
+        [Test]
         public virtual void testModalWithPassive()
         {
             NPPhraseSpec @object = phraseFactory.createNounPhrase("the", "pizza");
@@ -732,7 +733,7 @@ namespace SimpleNLG.Test.syntax.english
             Assert.AreEqual("the pizza can be classified as good", realiser.realise(s).Realisation);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testPassiveWithPPCompl()
         {
             // passive with just complement
@@ -757,7 +758,7 @@ namespace SimpleNLG.Test.syntax.english
                 realiser.realise(_s1).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testPassiveWithPPMod()
         {
             // passive with just complement
@@ -781,7 +782,7 @@ namespace SimpleNLG.Test.syntax.english
                 realiser.realise(_s1).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testCuePhrase()
         {
             NPPhraseSpec subject = phraseFactory.createNounPhrase("wave");
@@ -817,7 +818,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Check that setComplement replaces earlier complements
          */
-        [TestMethod]
+        [Test]
         public virtual void setComplementTest()
         {
             SPhraseSpec s = phraseFactory.createClause();
@@ -839,7 +840,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test for subclauses involving WH-complements Based on a query by Owen
          * Bennett
          */
-        [TestMethod]
+        [Test]
         public virtual void subclausesTest()
         {
             // Once upon a time, there was an Accountant, called Jeff, who lived in a forest.

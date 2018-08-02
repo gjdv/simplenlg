@@ -20,9 +20,10 @@
  */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -35,7 +36,7 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author ereiter
      */
-    [TestClass]
+    [TestFixture]
     public class DocumentElementTest : SimpleNLG4Test
     {
         private SPhraseSpec p1, p2, p3;
@@ -54,7 +55,7 @@ namespace SimpleNLG.Test.syntax.english
         {
         }
 
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -63,7 +64,7 @@ namespace SimpleNLG.Test.syntax.english
             p3 = phraseFactory.createClause("they", "be", "nervous");
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -75,7 +76,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Basic tests.
          */
-        [TestMethod]
+        [Test]
         public virtual void testBasics()
         {
             DocumentElement s1 = phraseFactory.createSentence(p1);
@@ -92,7 +93,7 @@ namespace SimpleNLG.Test.syntax.english
          * constituent is empty. (This is to check for a bug fix for addition of
          * spurious whitespace).
          */
-        [TestMethod]
+        [Test]
         public virtual void testExtraWhitespace()
         {
             NPPhraseSpec np1 = phraseFactory.createNounPhrase("a", "vessel");
@@ -115,7 +116,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test whether sents can be embedded in a section without intervening paras
          */
-        [TestMethod]
+        [Test]
         public virtual void testEmbedding()
         {
             DocumentElement sent = phraseFactory.createSentence("This is a test");
@@ -128,7 +129,7 @@ namespace SimpleNLG.Test.syntax.english
                 realiser.realise(section).Realisation);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testSections()
         {
             // doc which contains a section, and two paras
@@ -192,7 +193,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for lists and embedded lists
          */
-        [TestMethod]
+        [Test]
         public virtual void testListItems()
         {
             DocumentElement list = phraseFactory.createList();

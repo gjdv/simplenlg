@@ -19,10 +19,11 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -40,7 +41,7 @@ namespace SimpleNLG.Test.syntax.english
      * @author ereiter
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class PhraseSpecTest : SimpleNLG4Test
     {
         public PhraseSpecTest() : this(null)
@@ -52,7 +53,7 @@ namespace SimpleNLG.Test.syntax.english
         }
 
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -61,7 +62,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Check that empty phrases are not realised as "null"
          */
-        [TestMethod]
+        [Test]
         public virtual void emptyPhraseRealisationTest()
         {
             SPhraseSpec emptyClause = phraseFactory.createClause();
@@ -72,7 +73,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test SPhraseSpec
          */
-        [TestMethod]
+        [Test]
         public virtual void testSPhraseSpec()
         {
             // simple test of methods

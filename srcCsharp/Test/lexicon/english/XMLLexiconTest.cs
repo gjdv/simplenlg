@@ -22,12 +22,13 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.phrasespec;
 using SimpleNLG.Main.realiser.english;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.lexicon.english
 {
@@ -44,7 +45,7 @@ namespace SimpleNLG.Test.lexicon.english
      * @author D. Westwater, Data2Text Ltd
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class XMLLexiconTest
     {
         // lexicon object -- an instance of Lexicon
@@ -54,7 +55,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Sets up the accessor and runs it -- takes ca. 26 sec
          */
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -71,7 +72,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Close the lexicon and cleanup.
          */
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             if (lexicon != null)
@@ -83,7 +84,7 @@ namespace SimpleNLG.Test.lexicon.english
         /**
          * Runs basic Lexicon tests.
          */
-        [TestMethod]
+        [Test]
         public virtual void basicLexiconTests()
         {
             SharedLexiconTests tests = new SharedLexiconTests();
@@ -94,7 +95,7 @@ namespace SimpleNLG.Test.lexicon.english
          * Tests the immutability of the XMLLexicon by checking to make sure features 
          * are not inadvertently propagated to the canonical XMLLexicon WordElement object.
          */
-        [TestMethod]
+        [Test]
         public virtual void xmlLexiconImmutabilityTest()
         {
             NLGFactory factory = new NLGFactory(lexicon);

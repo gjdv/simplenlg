@@ -20,11 +20,12 @@
  */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.aggregation;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -42,7 +43,7 @@ namespace SimpleNLG.Test.syntax.english
      * @author Albert Gatt, University of Malta & University of Aberdeen
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class ClauseAggregationTest : SimpleNLG4Test
     {
         // set up a few more fixtures
@@ -78,7 +79,7 @@ namespace SimpleNLG.Test.syntax.english
          * 
          * @see simplenlg.test.SimplenlgTest#setUp()
          */
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -131,7 +132,7 @@ namespace SimpleNLG.Test.syntax.english
                 phraseFactory.createPrepositionPhrase("behind", phraseFactory.createNounPhrase("the", "curtain")));
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -152,7 +153,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test clause coordination with two sentences with same subject but
          * different postmodifiers: fails
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinationSameSubjectFail()
         {
             IList<NLGElement> elements = new List<NLGElement> {s1, s2};
@@ -164,7 +165,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test clause coordination with two sentences one of which is passive:
          * fails
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinationPassiveFail()
         {
             s1.setFeature(Feature.PASSIVE, true);
@@ -192,7 +193,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test clause coordination with 2 sentences with same VP: succeeds
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinationSameVP()
         {
             IList<NLGElement> elements = new List<NLGElement> {s3, s4};
@@ -206,7 +207,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Coordination of sentences with front modifiers: should preserve the mods
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinationWithModifiers()
         {
             // now add a couple of front modifiers
@@ -223,7 +224,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test coordination of 3 sentences with the same VP
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinationSameVP2()
         {
             IList<NLGElement> elements = new List<NLGElement> {s3, s4, s5};
@@ -237,7 +238,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Forward conjunction reduction test
          */
-        [TestMethod]
+        [Test]
         public virtual void testForwardConjReduction()
         {
             NLGElement aggregated = fcr.apply(s2, s3);
@@ -248,7 +249,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Backward conjunction reduction test
          */
-        [TestMethod]
+        [Test]
         public virtual void testBackwardConjunctionReduction()
         {
             NLGElement aggregated = bcr.apply(s3, s6);
@@ -259,7 +260,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test multiple aggregation procedures in a single aggregator. 
          */
-        //	[TestMethod]
+        //	[Test]
         //	public void testForwardBackwardConjunctionReduction() {
         //		this.aggregator.addRule(this.fcr);
         //		this.aggregator.addRule(this.bcr);

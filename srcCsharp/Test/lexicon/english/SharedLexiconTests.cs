@@ -19,7 +19,7 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;

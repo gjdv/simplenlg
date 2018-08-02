@@ -21,6 +21,7 @@
 
 using System;
 using SimpleNLG.Main.framework;
+using SimpleNLG.Main.xmlrealiser;
 
 namespace SimpleNLG.Main.lexicon.util
 {
@@ -92,7 +93,7 @@ namespace SimpleNLG.Main.lexicon.util
 
 				if ((null != DB_FILENAME && DB_FILENAME.Length > 0) && (null != WORDLIST_FILENAME && WORDLIST_FILENAME.Length > 0) && (null != XML_FILENAME && XML_FILENAME.Length > 0) && dbDriverAvaliable)
 				{
-					lex = new NIHDBLexicon(DB_FILENAME);
+					lex = new NIHDBLexicon(DB_FILENAME,XMLRealiser.LexiconType.NIHDB_HSQL);
 
 					try
 					{

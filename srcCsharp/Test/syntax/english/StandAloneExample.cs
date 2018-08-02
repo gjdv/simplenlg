@@ -20,7 +20,7 @@
  */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -51,13 +51,11 @@ namespace SimpleNLG.Test.syntax.english
      * @author Dave Westwater, Data2Text Ltd
      *
      */
-    [TestClass]
     public class StandAloneExample
     {
         /**
          * @param args
          */
-        [TestMethod]
         public static void Main(string[] args)
         {
             // below is a simple complete example of using simplenlg V4

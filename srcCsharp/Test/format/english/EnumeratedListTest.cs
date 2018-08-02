@@ -1,8 +1,8 @@
 ﻿/*
  * Ported to C# by Gert-Jan de Vries
  */
- 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using NUnit.Framework;
 using SimpleNLG.Main.format.english;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -15,10 +15,10 @@ namespace SimpleNLG.Test.format.english
     using Lexicon = Lexicon;
     using Realiser = Realiser;
 
-    [TestClass]
+    [TestFixture]
     public class EnumeratedListTest
     {
-        [TestMethod]
+        [Test]
         public virtual void bulletList()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon;
@@ -49,7 +49,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual(expectedOutput, realisedOutput);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void enumeratedList()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon;

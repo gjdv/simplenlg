@@ -19,9 +19,10 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -34,7 +35,7 @@ namespace SimpleNLG.Test.syntax.english
      * coordinate prepositional phrases.
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public class PrepositionalPhraseTest : SimpleNLG4Test
     {
         public PrepositionalPhraseTest() : this(null)
@@ -51,7 +52,7 @@ namespace SimpleNLG.Test.syntax.english
         {
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -60,7 +61,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Basic test for the pre-set PP fixtures.
          */
-        [TestMethod]
+        [Test]
         public virtual void testBasic()
         {
             Assert.AreEqual("in the room", realiser.realise(inTheRoom).Realisation); //$NON-NLS-1$
@@ -71,7 +72,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for coordinate NP complements of PPs.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplementation()
         {
             inTheRoom.clearComplements();
@@ -83,7 +84,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for PP coordination.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordination()
         {
             // simple coordination

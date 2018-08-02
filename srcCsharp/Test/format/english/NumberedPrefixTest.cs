@@ -1,23 +1,23 @@
 ﻿/*
  * Ported to C# by Gert-Jan de Vries
  */
- 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using NUnit.Framework;
 using SimpleNLG.Main.format.english;
 
 namespace SimpleNLG.Test.format.english
 {
-    [TestClass]
+    [TestFixture]
     public class NumberedPrefixTest
     {
-        [TestMethod]
+        [Test]
         public virtual void testNewInstancePrefixIsZero()
         {
             NumberedPrefix prefix = new NumberedPrefix();
             Assert.AreEqual("0", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testIncrementFromNewInstanceIsOne()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -25,7 +25,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("1", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testIncrementForTwoPointTwoIsTwoPointThree()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -34,7 +34,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("2.3", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testIncrementForThreePointFourPointThreeIsThreePointFourPointFour()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -43,7 +43,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("3.4.4", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testUpALevelForNewInstanceIsOne()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -51,7 +51,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("1", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testDownALevelForNewInstanceIsZero()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -59,7 +59,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("0", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testDownALevelForSevenIsZero()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -68,7 +68,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("0", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testDownALevelForTwoPointSevenIsTwo()
         {
             NumberedPrefix prefix = new NumberedPrefix();
@@ -77,7 +77,7 @@ namespace SimpleNLG.Test.format.english
             Assert.AreEqual("2", prefix.Prefix);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testDownALevelForThreePointFourPointThreeIsThreePointFour()
         {
             NumberedPrefix prefix = new NumberedPrefix();

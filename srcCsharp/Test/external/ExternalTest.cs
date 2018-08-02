@@ -3,7 +3,7 @@
  */
  
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main;
 using SimpleNLG.Main.aggregation;
 using SimpleNLG.Main.features;
@@ -14,14 +14,14 @@ using SimpleNLG.Main.realiser.english;
 
 namespace SimpleNLG.Test.external
 {
-    [TestClass]
+    [TestFixture]
     public class ExternalTest
     {
         private Lexicon lexicon = null;
         private NLGFactory phraseFactory = null;
         private Realiser realiser = null;
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = Lexicon.DefaultLexicon;
@@ -29,7 +29,7 @@ namespace SimpleNLG.Test.external
             realiser = new Realiser(lexicon);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void forcherTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -51,7 +51,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("Peter has something to do with Paul", realiser.realise(s2).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void luTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -62,7 +62,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("we consider John a friend", realiser.realise(s1).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void dwightTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -108,7 +108,7 @@ namespace SimpleNLG.Test.external
                 realiser.realise(sentence1).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void novelliTest()
         {
             PhraseElement
@@ -132,7 +132,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("I think you should really go running", text); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void piotrekTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -149,7 +149,7 @@ namespace SimpleNLG.Test.external
                 realiser.realise(sent).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void prescottTest()
         {
             phraseFactory.Lexicon = lexicon;
@@ -162,7 +162,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("Jack sees Jill prod Spot", realiser.realise(sent).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void wissnerTest()
         {
             PhraseElement p = phraseFactory.createClause("a wolf", "eat"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -170,7 +170,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("what does a wolf eat", realiser.realise(p).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void phanTest()
         {
             PhraseElement subjectElement = phraseFactory.createNounPhrase("I");
@@ -187,7 +187,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("I run from home", realiser.realise(newSentence).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void kerberTest()
         {
             SPhraseSpec sp = phraseFactory.createClause("he", "need");
@@ -205,7 +205,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("he gives me the book", realiser.realise(sp2).Realisation);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void stephensonTest()
         {
             SPhraseSpec qs2 = phraseFactory.createClause();
@@ -221,7 +221,7 @@ namespace SimpleNLG.Test.external
                 realiser.realise(sentence).Realisation);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void pierreTest()
         {
             SPhraseSpec p = phraseFactory.createClause("Mary", "chase", "George");
@@ -245,7 +245,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("How does Mary chase George?", realiser.realiseSentence(p));
         }
 
-        [TestMethod]
+        [Test]
         public virtual void data2TextTest()
         {
             SPhraseSpec p = phraseFactory.createClause("the dog", "weigh", "12");
@@ -294,7 +294,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("Rain likely.", realiser.realiseSentence(weather5));
         }
 
-        [TestMethod]
+        [Test]
         public virtual void rafaelTest()
         {
             IList<NLGElement> ss = new List<NLGElement>();
@@ -360,7 +360,7 @@ namespace SimpleNLG.Test.external
             return ret;
         }
 
-        [TestMethod]
+        [Test]
         public virtual void wikipediaTest()
         {
             NPPhraseSpec subject = phraseFactory.createNounPhrase("the", "woman");
@@ -376,7 +376,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("The man is hungry and buys an apple.", realiser.realiseSentence(result));
         }
 
-        [TestMethod]
+        [Test]
         public virtual void leanTest()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -434,7 +434,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("Why are you crying?", realiser.realiseSentence(test));
         }
 
-        [TestMethod]
+        [Test]
         public virtual void kalijurandTest()
         {
             string lemma = "walk";
@@ -455,7 +455,7 @@ namespace SimpleNLG.Test.external
             Assert.AreEqual("walks", form);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void layTest()
         {
             string lemma = "slap";

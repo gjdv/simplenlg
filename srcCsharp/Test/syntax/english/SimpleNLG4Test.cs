@@ -19,7 +19,7 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.phrasespec;
@@ -40,7 +40,7 @@ namespace SimpleNLG.Test.syntax.english
      * constituents) that all other tests can use.
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public abstract class SimpleNLG4Test
     {
         /** The realiser. */
@@ -80,7 +80,7 @@ namespace SimpleNLG.Test.syntax.english
          * Set up the variables we'll need for this simplenlg.test to run (Called
          * automatically by JUnit)
          */
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = new XMLLexicon(); // built in lexicon
@@ -125,7 +125,7 @@ namespace SimpleNLG.Test.syntax.english
             say = phraseFactory.createVerbPhrase("say"); //$NON-NLS-1$
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             realiser = null;

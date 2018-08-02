@@ -76,7 +76,8 @@ namespace SimpleNLG.Main.xmlrealiser
 		    /** The XML. */
 			XML,
     		/** The NIHDB. */
-			NIHDB
+			NIHDB_HSQL,
+            NIHDB_SQLITE
 		}
 
 	    /**
@@ -202,9 +203,9 @@ namespace SimpleNLG.Main.xmlrealiser
 			{
 				lexicon = new XMLLexicon(lexFile);
 			}
-			else if (lexType == LexiconType.NIHDB)
+			else if (lexType == LexiconType.NIHDB_HSQL || lexiconType == LexiconType.NIHDB_SQLITE)
 			{
-                lexicon = new NIHDBLexicon(lexFile);
+                lexicon = new NIHDBLexicon(lexFile,lexType);
 			}
 			else if (lexType == LexiconType.DEFAULT)
 			{

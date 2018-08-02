@@ -21,11 +21,12 @@
 
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.format.english;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -37,7 +38,7 @@ namespace SimpleNLG.Test.syntax.english
     using SPhraseSpec = SPhraseSpec;
     using Feature = Feature;
 
-    [TestClass]
+    [TestFixture]
     public class OrthographyFormatTest : SimpleNLG4Test
     {
         private bool InstanceFieldsInitialized = false;
@@ -71,7 +72,7 @@ namespace SimpleNLG.Test.syntax.english
             }
         }
 
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -96,7 +97,7 @@ namespace SimpleNLG.Test.syntax.english
             });
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -112,7 +113,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the realisation of a simple list
          */
-        [TestMethod]
+        [Test]
         public virtual void testSimpleListOrthography()
         {
             NLGElement realised = realiser.realise(list1);
@@ -122,7 +123,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the realisation of a list with an embedded list
          */
-        [TestMethod]
+        [Test]
         public virtual void testEmbeddedListOrthography()
         {
             NLGElement realised = realiser.realise(list2);
@@ -132,7 +133,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the realisation of appositive pre-modifiers with commas around them.
          */
-        [TestMethod]
+        [Test]
         public virtual void testAppositivePreModifiers()
         {
             NPPhraseSpec subject = phraseFactory.createNounPhrase("I");
@@ -159,7 +160,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the realisation of appositive pre-modifiers with commas around them.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCommaSeparatedFrontModifiers()
         {
             NPPhraseSpec subject = phraseFactory.createNounPhrase("I");
@@ -190,7 +191,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Ensure we don't end up with doubled commas.
          */
-        [TestMethod]
+        [Test]
         public virtual void testNoDoubledCommas()
         {
             NPPhraseSpec subject = phraseFactory.createNounPhrase("I");

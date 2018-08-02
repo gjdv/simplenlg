@@ -19,7 +19,7 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -43,14 +43,14 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author Saad Mahamood
      */
-    [TestClass]
+    [TestFixture]
     public class PremodifierTest
     {
         private Lexicon lexicon = null;
         private NLGFactory phraseFactory = null;
         private Realiser realiser = null;
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = Lexicon.DefaultLexicon;
@@ -63,7 +63,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test change from "a" to "an" in the presence of a premodifier with a
          * vowel
          */
-        [TestMethod]
+        [Test]
         public virtual void indefiniteWithPremodifierTest()
         {
             SPhraseSpec s = phraseFactory.createClause("there", "be");
@@ -83,7 +83,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for comma separation between premodifers
          */
-        [TestMethod]
+        [Test]
         public virtual void multipleAdjPremodifiersTest()
         {
             NPPhraseSpec np = phraseFactory.createNounPhrase("a", "stenosis");
@@ -95,7 +95,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for comma separation between verb premodifiers
          */
-        [TestMethod]
+        [Test]
         public virtual void multipleAdvPremodifiersTest()
         {
             AdvPhraseSpec adv1 = phraseFactory.createAdverbPhrase("slowly");

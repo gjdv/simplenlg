@@ -20,7 +20,7 @@
  */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -50,7 +50,7 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public class InterrogativeTest : SimpleNLG4Test
     {
         // set up a few more fixtures
@@ -77,7 +77,7 @@ namespace SimpleNLG.Test.syntax.english
          * 
          * @see simplenlg.test.SimplenlgTest#setUp()
          */
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -107,7 +107,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests a couple of fairly simple questions.
          */
-        [TestMethod]
+        [Test]
         public virtual void testSimpleQuestions()
         {
             setUp();
@@ -200,7 +200,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for sentences with negation.
          */
-        [TestMethod]
+        [Test]
         public virtual void testNegatedQuestions()
         {
             setUp();
@@ -233,7 +233,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for coordinate VPs in question form.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinateVPQuestions()
         {
             // create a complex vp: "kiss the dog and walk in the room"
@@ -295,7 +295,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for simple WH questions in present tense.
          */
-        [TestMethod]
+        [Test]
         public virtual void testSimpleQuestions2()
         {
             setUp();
@@ -341,7 +341,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for wh questions.
          */
-        [TestMethod]
+        [Test]
         public virtual void testWHQuestions()
         {
             // subject interrogative
@@ -412,7 +412,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * WH movement in the progressive
          */
-        [TestMethod]
+        [Test]
         public virtual void testProgrssiveWHSubjectQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause();
@@ -427,7 +427,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * WH movement in the progressive
          */
-        [TestMethod]
+        [Test]
         public virtual void testProgrssiveWHObjectQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause();
@@ -447,7 +447,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Negation with WH movement for subject
          */
-        [TestMethod]
+        [Test]
         public virtual void testNegatedWHSubjQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause();
@@ -462,7 +462,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Negation with WH movement for object
          */
-        [TestMethod]
+        [Test]
         public virtual void testNegatedWHObjQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause();
@@ -479,7 +479,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test questyions in the tutorial.
          */
-        [TestMethod]
+        [Test]
         public virtual void testTutorialQuestions()
         {
             setUp();
@@ -498,7 +498,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Subject WH Questions with modals
          */
-        [TestMethod]
+        [Test]
         public virtual void testModalWHSubjectQuestion()
         {
             SPhraseSpec p = phraseFactory.createClause(dog, "upset", man);
@@ -534,7 +534,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Subject WH Questions with modals
          */
-        [TestMethod]
+        [Test]
         public virtual void testModalWHObjectQuestion()
         {
             SPhraseSpec p = phraseFactory.createClause(dog, "upset", man);
@@ -560,7 +560,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Questions with tenses requiring auxiliaries + subject WH
          */
-        [TestMethod]
+        [Test]
         public virtual void testAuxWHSubjectQuestion()
         {
             SPhraseSpec p = phraseFactory.createClause(dog, "upset", man);
@@ -578,7 +578,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Questions with tenses requiring auxiliaries + subject WH
          */
-        [TestMethod]
+        [Test]
         public virtual void testAuxWHObjectQuestion()
         {
             SPhraseSpec p = phraseFactory.createClause(dog, "upset", man);
@@ -614,7 +614,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for questions with "be"
          */
-        [TestMethod]
+        [Test]
         public virtual void testBeQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause(phraseFactory.createNounPhrase("a", "ball"),
@@ -644,7 +644,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for questions with "be" in future tense
          */
-        [TestMethod]
+        [Test]
         public virtual void testBeQuestionsFuture()
         {
             SPhraseSpec p = phraseFactory.createClause(phraseFactory.createNounPhrase("a", "ball"),
@@ -676,7 +676,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests for WH questions with be in past tense
          */
-        [TestMethod]
+        [Test]
         public virtual void testBeQuestionsPast()
         {
             SPhraseSpec p = phraseFactory.createClause(phraseFactory.createNounPhrase("a", "ball"),
@@ -709,7 +709,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test WHERE, HOW and WHY questions, with copular predicate "be"
          */
-        [TestMethod]
+        [Test]
         public virtual void testSimpleBeWHQuestions()
         {
             SPhraseSpec p = phraseFactory.createClause("I", "be");
@@ -727,7 +727,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test a simple "how" question, based on query from Albi Oxa
          */
-        [TestMethod]
+        [Test]
         public virtual void testHowPredicateQuestion()
         {
             SPhraseSpec test = phraseFactory.createClause();
@@ -751,7 +751,7 @@ namespace SimpleNLG.Test.syntax.english
          * Case 2 checks that the same clause is generated, even when an object is
          * declared.
          */
-        [TestMethod]
+        [Test]
         public virtual void testWhatObjectInterrogative()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon;

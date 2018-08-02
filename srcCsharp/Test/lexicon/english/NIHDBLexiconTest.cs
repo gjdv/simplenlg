@@ -4,14 +4,17 @@
  
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.realiser.english;
 using SimpleNLG.Main.server;
 using SimpleNLG.Main.xmlrealiser;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.lexicon.english
 {
@@ -26,18 +29,19 @@ namespace SimpleNLG.Test.lexicon.english
     using WordElement = WordElement;
     using Realiser = Realiser;
 
-    [TestClass]
+    [TestFixture]
     public class NIHDBLexiconTest
     {
         internal NIHDBLexicon lexicon = null;
 
-        internal static string BASE_DIRECTORY = @"../../";
+        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
 
         // DB location -- change this to point to the lex access data dir
-        internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             "Resources/NIHLexicon/lexAccess2011.data";
+        internal static string DB_FILENAME = BASE_DIRECTORY + Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2011.sqlite";
 
-        [TestInitialize]
+        internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
+
+        [SetUp]
         public virtual void setUp()
         {
             // use property file for the lexicon
@@ -45,23 +49,30 @@ namespace SimpleNLG.Test.lexicon.english
             try
             {
                 Properties prop = new Properties();
-                prop.load("Resources/lexicon.properties");
+                prop.load(BASE_DIRECTORY + Path.DirectorySeparatorChar + "Resources/lexicon.properties");
 
                 string lexiconPath = prop.getProperty("DB_FILENAME");
+                string lexiconTypeStr = prop.getProperty("LexiconType");
+                XMLRealiser.LexiconType lexiconType = XMLRealiser.LexiconType.NIHDB_HSQL;
+                if (lexiconTypeStr == "NIH_SQLITE")
+                {
+                    lexiconType = XMLRealiser.LexiconType.NIHDB_SQLITE;
+                }
 
                 if (null != lexiconPath)
                 {
-                    lexicon = new NIHDBLexicon(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + lexiconPath);
+                    lexicon = new NIHDBLexicon(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + lexiconPath,
+                        lexiconType);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                lexicon = new NIHDBLexicon(DB_FILENAME);
+                lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             }
         }
 
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             if (lexicon != null)
@@ -71,14 +82,14 @@ namespace SimpleNLG.Test.lexicon.english
         }
 
 
-        [TestMethod]
+        [Test]
         public virtual void basicLexiconTests()
         {
             SharedLexiconTests tests = new SharedLexiconTests();
             tests.doBasicTests(lexicon);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void beInflectionTest()
         {
             Realiser r = new Realiser();
@@ -149,7 +160,7 @@ namespace SimpleNLG.Test.lexicon.english
         }
 
 
-        [TestMethod]
+        [Test]
         public virtual void acronymsTests()
         {
             WordElement uk = lexicon.getWord("UK");
@@ -162,7 +173,7 @@ namespace SimpleNLG.Test.lexicon.english
         }
 
 
-        [TestMethod]
+        [Test]
         public virtual void standardInflectionsTest()
         {
             bool keepInflectionsFlag = lexicon.KeepStandardInflections;
@@ -180,14 +191,16 @@ namespace SimpleNLG.Test.lexicon.english
         }
 
 
-        [TestMethod]
+        [Test]
         public virtual void multiThreadAppAccessTest()
         {
             LexThread runner1 = new LexThread(this, "lie");
             LexThread runner2 = new LexThread(this, "bark");
 
-            Thread thread1 = new Thread(new ThreadStart(runner1.Run));
-            Thread thread2 = new Thread(new ThreadStart(runner2.Run));
+            Thread thread1 = new Thread(runner1.Run);
+            Thread thread2 = new Thread(runner2.Run);
+            thread1.Start();
+            thread2.Start();
 
             try
             {

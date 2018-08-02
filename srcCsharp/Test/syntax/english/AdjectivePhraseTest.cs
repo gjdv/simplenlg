@@ -19,7 +19,7 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 
@@ -37,7 +37,7 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public class AdjectivePhraseTest : SimpleNLG4Test
     {
         /**
@@ -54,7 +54,7 @@ namespace SimpleNLG.Test.syntax.english
         {
         }
 
-        [TestInitialize]
+        [SetUp]
         public override void setUp()
         {
             base.setUp();
@@ -64,7 +64,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test premodification & coordination of Adjective Phrases (Not much else
          * to simplenlg.test)
          */
-        [TestMethod]
+        [Test]
         public virtual void testAdj()
         {
             // form the adjphrase "incredibly salacious"
@@ -117,7 +117,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Simple test of adverbials
          */
-        [TestMethod]
+        [Test]
         public virtual void testAdv()
         {
             PhraseElement sent = phraseFactory.createClause("John", "eat"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -136,7 +136,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test participles as adjectives
          */
-        [TestMethod]
+        [Test]
         public virtual void testParticipleAdj()
         {
             PhraseElement ap = phraseFactory.createAdjectivePhrase(lexicon.getWord("associated",
@@ -147,7 +147,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for multiple adjective modifiers with comma-separation. Example courtesy of William Bradshaw (Data2Text Ltd).
          */
-        [TestMethod]
+        [Test]
         public virtual void testMultipleModifiers()
         {
             PhraseElement np = phraseFactory.createNounPhrase(lexicon.getWord("message",

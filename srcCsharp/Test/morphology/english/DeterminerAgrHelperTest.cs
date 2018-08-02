@@ -1,16 +1,16 @@
 ﻿/*
  * Ported to C# by Gert-Jan de Vries
  */
- 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using NUnit.Framework;
 using SimpleNLG.Main.morphology.english;
 
 namespace SimpleNLG.Test.morphology.english
 {
-    [TestClass]
+    [TestFixture]
     public class DeterminerAgrHelperTest
     {
-        [TestMethod]
+        [Test]
         public virtual void testRequiresAn()
         {
             Assert.IsTrue(DeterminerAgrHelper.requiresAn("elephant"));
@@ -26,7 +26,7 @@ namespace SimpleNLG.Test.morphology.english
             Assert.IsFalse(DeterminerAgrHelper.requiresAn("100"));
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testCheckEndsWithIndefiniteArticle1()
         {
             string cannedText = "I see a";
@@ -40,7 +40,7 @@ namespace SimpleNLG.Test.morphology.english
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testCheckEndsWithIndefiniteArticle2()
         {
             string cannedText = "I see a";
@@ -54,7 +54,7 @@ namespace SimpleNLG.Test.morphology.english
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testCheckEndsWithIndefiniteArticle3()
         {
             string cannedText = "I see an";

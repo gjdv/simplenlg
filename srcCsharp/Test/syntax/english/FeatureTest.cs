@@ -19,10 +19,11 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -44,7 +45,7 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author François Portet
      */
-    [TestClass]
+    [TestFixture]
     public class FeatureTest : SimpleNLG4Test
     {
         private bool InstanceFieldsInitialized = false;
@@ -76,7 +77,7 @@ namespace SimpleNLG.Test.syntax.english
             }
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -86,7 +87,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests use of the Possessive Feature.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPossessiveFeature_PastTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -132,7 +133,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Basic tests.
          */
-        [TestMethod]
+        [Test]
         public virtual void testTwoPossessiveFeature_PastTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -185,7 +186,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test use of the Complementiser feature by combining two S's using cue phrase and gerund.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplementiserFeature_PastTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -210,7 +211,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test use of the Complementiser feature in a {@link CoordinatedPhraseElement} by combine two S's using cue phrase and gerund.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplementiserFeatureInACoordinatePhrase_PastTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -243,7 +244,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the use of the Progressive and Complementiser Features in future tense.
          */
-        [TestMethod]
+        [Test]
         public virtual void testProgressiveAndComplementiserFeatures_FutureTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -284,7 +285,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests the use of the Complementiser, Passive, Perfect features in past tense.
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplementiserPassivePerfectFeatures_PastTense()
         {
             setUp();
@@ -314,7 +315,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Tests the user of the progressive and complementiser featuers in past tense.
          */
-        [TestMethod]
+        [Test]
         public virtual void testProgressiveComplementiserFeatures_PastTense()
         {
             phraseFactory.Lexicon = lexicon;
@@ -346,7 +347,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the use of Passive in creating a Passive sentence structure: <Object> + [be] + <verb> + [by] + [Subject].
          */
-        [TestMethod]
+        [Test]
         public virtual void testPassiveFeature()
         {
             realiser.Lexicon = lexicon;
@@ -364,7 +365,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test for repetition of the future auxiliary "will", courtesy of Luxor
          * Vlonjati
          */
-        [TestMethod]
+        [Test]
         public virtual void testFutureTense()
         {
             SPhraseSpec test = phraseFactory.createClause();

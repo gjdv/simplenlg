@@ -19,9 +19,10 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -32,7 +33,7 @@ namespace SimpleNLG.Test.syntax.english
     /**
      * Tests for elision of phrases and words
      */
-    [TestClass]
+    [TestFixture]
     public class ElisionTest : SimpleNLG4Test
     {
         public ElisionTest() : this(null)
@@ -69,7 +70,7 @@ namespace SimpleNLG.Test.syntax.english
         //		Assert.AreEqual("the rock kisses", this.realiser.realise(s1).getRealisation());
         //	}
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -79,7 +80,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for elision of specific words rather than phrases
          */
-        [TestMethod]
+        [Test]
         public virtual void wordElisionTest()
         {
             realiser.DebugMode = true;

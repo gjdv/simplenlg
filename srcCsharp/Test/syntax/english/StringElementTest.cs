@@ -20,11 +20,12 @@
  */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.phrasespec;
 using SimpleNLG.Main.realiser.english;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -45,14 +46,14 @@ namespace SimpleNLG.Test.syntax.english
      * @author bertugatt
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class StringElementTest
     {
         private Lexicon lexicon = null;
         private NLGFactory phraseFactory = null;
         private Realiser realiser = null;
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = Lexicon.DefaultLexicon;
@@ -60,7 +61,7 @@ namespace SimpleNLG.Test.syntax.english
             realiser = new Realiser(lexicon);
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             lexicon = null;
@@ -71,7 +72,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test that string elements can be used as heads of NP
          */
-        [TestMethod]
+        [Test]
         public virtual void stringElementAsHeadTest()
         {
             NPPhraseSpec np = phraseFactory.createNounPhrase();
@@ -84,7 +85,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Sentences whose VP is a canned string
          */
-        [TestMethod]
+        [Test]
         public virtual void stringElementAsVPTest()
         {
             SPhraseSpec s = phraseFactory.createClause();
@@ -97,7 +98,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test for when the SPhraseSpec has a NPSpec added directly after it:
          * "Mary loves NP[the cow]."
          */
-        [TestMethod]
+        [Test]
         public virtual void tailNPStringElementTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -114,7 +115,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for a NP followed by a canned text: "NP[A cat] loves a dog".
          */
-        [TestMethod]
+        [Test]
         public virtual void frontNPStringElementTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -133,7 +134,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test for a StringElement followed by a NP followed by a StringElement
          * "The world loves NP[ABBA] but not a sore loser."
          */
-        [TestMethod]
+        [Test]
         public virtual void mulitpleStringElementsTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -151,7 +152,7 @@ namespace SimpleNLG.Test.syntax.english
          * Test for multiple NP phrases with a single StringElement phrase:
          * "NP[John is] a trier NP[for cheese]."
          */
-        [TestMethod]
+        [Test]
         public virtual void mulitpleNPElementsTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -175,7 +176,7 @@ namespace SimpleNLG.Test.syntax.english
          * NP[The Nasdaq] rose steadily during NP[early trading], however it plummeted due to NP[a shock] after NP[IBM] announced poor 
          * NP[first quarter results].
          */
-        [TestMethod]
+        [Test]
         public virtual void whiteSpaceNPTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -214,7 +215,7 @@ namespace SimpleNLG.Test.syntax.english
          * Point absorption test: Check to see if SNLG respects abbreviations at the end of a sentence.
          * "NP[Yahya] was sleeping his own and dreaming etc."
          */
-        [TestMethod]
+        [Test]
         public virtual void pointAbsorptionTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -232,7 +233,7 @@ namespace SimpleNLG.Test.syntax.english
          * Point absorption test: As above, but with trailing white space.
          * "NP[Yaha] was sleeping his own and dreaming etc.      "
          */
-        [TestMethod]
+        [Test]
         public virtual void pointAbsorptionTrailingWhiteSpaceTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -251,7 +252,7 @@ namespace SimpleNLG.Test.syntax.english
          * 
          * "NP[Yahya] and friends etc. went to NP[the park] to play."
          */
-        [TestMethod]
+        [Test]
         public virtual void middleAbbreviationTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -275,7 +276,7 @@ namespace SimpleNLG.Test.syntax.english
          * Indefinite Article Inflection: StringElement to test how SNLG handles a/an situations.
          * "I see an NP[elephant]" 
          */
-        [TestMethod]
+        [Test]
         public virtual void stringIndefiniteArticleInflectionVowelTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -291,7 +292,7 @@ namespace SimpleNLG.Test.syntax.english
          * Indefinite Article Inflection: StringElement to test how SNLG handles a/an situations.
          * "I see NP[a elephant]" --> 
          */
-        [TestMethod]
+        [Test]
         public virtual void NPIndefiniteArticleInflectionVowelTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -309,7 +310,7 @@ namespace SimpleNLG.Test.syntax.english
          * Indefinite Article Inflection: StringElement to test how SNLG handles a/an situations.
          * "I see an NP[cow]" 
          */
-        [TestMethod]
+        [Test]
         public virtual void stringIndefiniteArticleInflectionConsonantTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -326,7 +327,7 @@ namespace SimpleNLG.Test.syntax.english
          * Indefinite Article Inflection: StringElement to test how SNLG handles a/an situations.
          * "I see NP[an cow]" --> 
          */
-        [TestMethod]
+        [Test]
         public virtual void NPIndefiniteArticleInflectionConsonantTest()
         {
             SPhraseSpec senSpec = phraseFactory.createClause();
@@ -344,7 +345,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * aggregationStringElementTest: Test to see if we can aggregate two StringElements in a CoordinatedPhraseElement.
          */
-        [TestMethod]
+        [Test]
         public virtual void aggregationStringElementTest()
         {
             CoordinatedPhraseElement coordinate = phraseFactory.createCoordinatedPhrase(
@@ -361,7 +362,7 @@ namespace SimpleNLG.Test.syntax.english
          * Tests that no empty space is added when a StringElement is instantiated with an empty string
          * or null object.
          */
-        [TestMethod]
+        [Test]
         public virtual void nullAndEmptyStringElementTest()
         {
             NLGElement nullStringElement = phraseFactory.createStringElement(null);

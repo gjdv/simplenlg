@@ -1,10 +1,12 @@
 ﻿/*
  * Ported to C# by Gert-Jan de Vries
  */
- 
+
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Reflection;
+using NUnit.Framework;
 using SimpleNLG.Main.xmlrealiser;
 using SimpleNLG.Main.xmlrealiser.wrapper;
 
@@ -15,18 +17,20 @@ namespace SimpleNLG.Test.xmlrealiser
     using RecordSet = RecordSet;
     using XmlDocumentElement = XmlDocumentElement;
 
-    [TestClass]
+    [TestFixture]
     public class XMLRealiserParameterizedTests
     {
         public XMLRealiserParameterizedTests()
         {
         }
 
-        [TestInitialize]
+        [SetUp]
         public void setUpBeforeClass()
         {
-            string lexDB = "Resources/NIHLexicon/lexAccess2013.data";
-            LexiconType lexType = LexiconType.NIHDB; // Some tests require this.
+            string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
+
+            string lexDB = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2013.sqlite";
+            LexiconType lexType = LexiconType.NIHDB_SQLITE; // Some tests require this.
             XMLRealiser.setLexicon(lexType, lexDB);
         }
 
@@ -63,7 +67,7 @@ namespace SimpleNLG.Test.xmlrealiser
             }
         }
 
-        [TestMethod]
+        [Test]
         public virtual void performTest()
         {
             string realisation = null;

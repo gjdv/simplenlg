@@ -20,7 +20,7 @@
  */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -54,7 +54,7 @@ namespace SimpleNLG.Test.syntax.english
      * @author Ehud Reiter
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class TutorialTest
     {
         // no code in sections 1 and 2
@@ -62,7 +62,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 3 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section3_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -80,7 +80,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 5 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section5_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -99,7 +99,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 6 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section6_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -148,7 +148,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test ability to use variant words
          */
-        [TestMethod]
+        [Test]
         public virtual void variantsTest()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -205,7 +205,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 5 to match simplenlg tutorial version 4's code
          */
-        [TestMethod]
+        [Test]
         public virtual void section5A_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -224,7 +224,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 6 to match simplenlg tutorial version 4' code
          */
-        [TestMethod]
+        [Test]
         public virtual void section6A_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -267,7 +267,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 7 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section7_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -288,7 +288,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 8 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section8_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -319,7 +319,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 10 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section10_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -362,7 +362,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 11 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section11_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -402,7 +402,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 13 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section13_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon
@@ -435,7 +435,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * test section 14 code
          */
-        [TestMethod]
+        [Test]
         public virtual void section14_Test()
         {
             Lexicon lexicon = Lexicon.DefaultLexicon; // default simplenlg lexicon

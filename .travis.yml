@@ -13,11 +13,10 @@ matrix:
     - language: csharp
       solution: srcCsharp/SimpleNLG.sln
       env: 
-        - RESOURCE_DIR_TO=srcCsharp/Resources/NIHLexicon/
-        - RESOURCE_DIR_FROM=src/test/resources/NIHLexicon/
+        - RESOURCE_DIR=srcCsharp/Resources/NIHLexicon/
       before_install:
         - sudo apt-get install unzip
-        - mkdir $RESOURCE_DIR_TO
-        - cp $RESOURCE_DIR_FROM/lexAccess2013.script $RESOURCE_DIR_TO
-        - cp $RESOURCE_DIR_FROM/lexAccess2013.properties $RESOURCE_DIR_TO
-        - unzip $RESOURCE_DIR_FROM/lexAccess2013.data.zip -d $RESOURCE_DIR_TO
+        - unzip $RESOURCE_DIR/lexAccess2011.sqlite.zip -d $RESOURCE_DIR
+        - unzip $RESOURCE_DIR/lexAccess2013.sqlite.zip -d $RESOURCE_DIR
+        - unzip $RESOURCE_DIR/lexAccess2016.sqlite.zip -d $RESOURCE_DIR
+

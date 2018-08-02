@@ -19,12 +19,16 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
+using System.Reflection;
+using NUnit.Framework;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.phrasespec;
 using SimpleNLG.Main.realiser.english;
 using SimpleNLG.Main.xmlrealiser;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -42,7 +46,7 @@ namespace SimpleNLG.Test.syntax.english
      * @author Saad Mahamood, Data2Text Limited.
      *
      */
-    [TestClass]
+    [TestFixture]
     public class DeterminerTest
     {
         public DeterminerTest() : base()
@@ -56,14 +60,19 @@ namespace SimpleNLG.Test.syntax.english
 
         private Lexicon lexicon;
 
-        private readonly string DB_FILENAME = "src/test/resources/NIHLexicon/lexAccess2011.data";
+        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
+
+        // DB location -- change this to point to the lex access data dir
+        internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2011.sqlite";
+
+        private XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
 
         /**
          * Set up the variables we'll need for this simplenlg.test to run (Called
          * automatically by JUnit)
          */
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             lexicon = new XMLLexicon(); // built in lexicon
@@ -72,7 +81,7 @@ namespace SimpleNLG.Test.syntax.english
             realiser = new Realiser(lexicon);
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             realiser = null;
@@ -88,7 +97,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testLowercaseConstant - Test for when there is a lower case constant
          */
-        [TestMethod]
+        [Test]
         public virtual void testLowercaseConstant()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -104,7 +113,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testLowercaseVowel - Test for "an" as a specifier.
          */
-        [TestMethod]
+        [Test]
         public virtual void testLowercaseVowel()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -120,7 +129,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testUppercaseConstant - Test for when there is a upper case constant
          */
-        [TestMethod]
+        [Test]
         public virtual void testUppercaseConstant()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -136,7 +145,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testUppercaseVowel - Test for "an" as a specifier for upper subjects.
          */
-        [TestMethod]
+        [Test]
         public virtual void testUppercaseVowel()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -152,7 +161,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testNumericA - Test for "a" specifier with a numeric subject 
          */
-        [TestMethod]
+        [Test]
         public virtual void testNumericA()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -168,7 +177,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testNumericAn - Test for "an" specifier with a numeric subject 
          */
-        [TestMethod]
+        [Test]
         public virtual void testNumericAn()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -185,7 +194,7 @@ namespace SimpleNLG.Test.syntax.english
          * testIrregularSubjects - Test irregular subjects that don't conform to the
          * vowel vs. constant divide. 
          */
-        [TestMethod]
+        [Test]
         public virtual void testIrregularSubjects()
         {
             SPhraseSpec sentence = phraseFactory.createClause();
@@ -201,7 +210,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testSingluarThisDeterminerNPObject - Test for "this" when used in the singular form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingluarThisDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -215,7 +224,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testPluralThisDeterminerNPObject - Test for "this" when used in the plural form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralThisDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -231,7 +240,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testSingluarThatDeterminerNPObject - Test for "that" when used in the singular form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingluarThatDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -245,7 +254,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testPluralThatDeterminerNPObject - Test for "that" when used in the plural form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralThatDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -261,7 +270,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testSingularThoseDeterminerNPObject - Test for "those" when used in the singular form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingularThoseDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -277,7 +286,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testSingularTheseDeterminerNPObject - Test for "these" when used in the singular form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingularTheseDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -293,7 +302,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testPluralThoseDeterminerNPObject - Test for "those" when used in the plural form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralThoseDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -309,7 +318,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * testPluralTheseDeterminerNPObject - Test for "these" when used in the plural form as a determiner in a NP Object
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralTheseDeterminerNPObject()
         {
             SPhraseSpec sentence_1 = phraseFactory.createClause();
@@ -326,10 +335,10 @@ namespace SimpleNLG.Test.syntax.english
          * testSingularTheseDeterminerNPObject - Test for "these" when used in the singular form as a determiner in a NP Object
          *                                       using the NIHDB Lexicon.
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingularTheseDeterminerNPObject_NIHDBLexicon()
         {
-            lexicon = new NIHDBLexicon(DB_FILENAME);
+            lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             phraseFactory = new NLGFactory(lexicon);
             realiser = new Realiser(lexicon);
 
@@ -347,10 +356,10 @@ namespace SimpleNLG.Test.syntax.english
          * testSingularThoseDeterminerNPObject - Test for "those" when used in the singular form as a determiner in a NP Object
          *                                       using the NIHDB Lexicon
          */
-        [TestMethod]
+        [Test]
         public virtual void testSingularThoseDeterminerNPObject_NIHDBLexicon()
         {
-            lexicon = new NIHDBLexicon(DB_FILENAME);
+            lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             phraseFactory = new NLGFactory(lexicon);
             realiser = new Realiser(lexicon);
 
@@ -368,10 +377,10 @@ namespace SimpleNLG.Test.syntax.english
          * testPluralThatDeterminerNPObject - Test for "that" when used in the plural form as a determiner in a NP Object
          *                                    using the NIHDB Lexicon.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralThatDeterminerNPObject_NIHDBLexicon()
         {
-            lexicon = new NIHDBLexicon(DB_FILENAME);
+            lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             phraseFactory = new NLGFactory(lexicon);
             realiser = new Realiser(lexicon);
 
@@ -389,10 +398,10 @@ namespace SimpleNLG.Test.syntax.english
          * testPluralThisDeterminerNPObject - Test for "this" when used in the plural form as a determiner in a NP Object
          *                                    using the NIHDBLexicon.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPluralThisDeterminerNPObject_NIHDBLexicon()
         {
-            lexicon = new NIHDBLexicon(DB_FILENAME);
+            lexicon = new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE);
             phraseFactory = new NLGFactory(lexicon);
             realiser = new Realiser(lexicon);
 

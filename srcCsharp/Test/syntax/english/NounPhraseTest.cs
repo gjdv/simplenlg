@@ -19,10 +19,11 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -46,7 +47,7 @@ namespace SimpleNLG.Test.syntax.english
      * 
      * @author agatt
      */
-    [TestClass]
+    [TestFixture]
     public class NounPhraseTest : SimpleNLG4Test
     {
         public NounPhraseTest() : this(null)
@@ -63,7 +64,7 @@ namespace SimpleNLG.Test.syntax.english
         {
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -73,7 +74,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the setPlural() method in noun phrases.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPlural()
         {
             np4.setFeature(Feature.NUMBER, NumberAgreement.PLURAL);
@@ -93,7 +94,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the pronominalisation method for full NPs.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPronominalisation()
         {
             // sing
@@ -118,7 +119,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test the pronominalisation method for full NPs (more thorough than above)
          */
-        [TestMethod]
+        [Test]
         public virtual void testPronominalisation2()
         {
             // Ehud - added extra pronominalisation tests
@@ -208,7 +209,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test premodification in NPS.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPremodification()
         {
             man.addPreModifier(salacious);
@@ -230,7 +231,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test prepositional postmodification.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPostmodification()
         {
             man.addPostModifier(onTheRock);
@@ -249,7 +250,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test nominal complementation
          */
-        [TestMethod]
+        [Test]
         public virtual void testComplementation()
         {
             // complementation with a WordElement
@@ -264,7 +265,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test possessive constructions.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPossessive()
         {
             // simple possessive 's: 'a man's'
@@ -296,7 +297,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test NP coordination.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordination()
         {
             CoordinatedPhraseElement cnp1 = new CoordinatedPhraseElement(dog, woman);
@@ -322,7 +323,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Another battery of tests for NP coordination.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordination2()
         {
             // simple coordination of complementised nps
@@ -376,7 +377,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test possessives in coordinate NPs.
          */
-        [TestMethod]
+        [Test]
         public virtual void testPossessiveCoordinate()
         {
             // simple coordination
@@ -399,7 +400,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test A vs An.
          */
-        [TestMethod]
+        [Test]
         public virtual void testAAn()
         {
             PhraseElement _dog = phraseFactory.createNounPhrase("a", "dog"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -425,7 +426,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Further tests for a/an agreement with coordinated premodifiers
          */
-        [TestMethod]
+        [Test]
         public virtual void testAAnCoord()
         {
             NPPhraseSpec _dog = phraseFactory.createNounPhrase("a", "dog");
@@ -437,7 +438,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for a/an agreement with numbers
          */
-        [TestMethod]
+        [Test]
         public virtual void testAAnWithNumbers()
         {
             NPPhraseSpec num = phraseFactory.createNounPhrase("a", "change");
@@ -512,7 +513,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test Modifier "guess" placement.
          */
-        [TestMethod]
+        [Test]
         public virtual void testModifier()
         {
             PhraseElement _dog = phraseFactory.createNounPhrase("a", "dog"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -531,7 +532,7 @@ namespace SimpleNLG.Test.syntax.english
             Assert.AreEqual("an angry cat in the park", realiser.realise(cat).Realisation); //$NON-NLS-1$
         }
 
-        [TestMethod]
+        [Test]
         public virtual void testPluralNounsBelongingToASingular()
         {
             SPhraseSpec sent = phraseFactory.createClause("I", "count up");
@@ -548,7 +549,7 @@ namespace SimpleNLG.Test.syntax.english
         }
 
 
-        [TestMethod]
+        [Test]
         public virtual void testSingularNounsBelongingToAPlural()
         {
             SPhraseSpec sent = phraseFactory.createClause("I", "clean");
@@ -567,7 +568,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test for appositive postmodifiers
          */
-        [TestMethod]
+        [Test]
         public virtual void testAppositivePostmodifier()
         {
             PhraseElement _dog = phraseFactory.createNounPhrase("the", "dog");

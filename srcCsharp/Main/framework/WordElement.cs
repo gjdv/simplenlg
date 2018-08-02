@@ -86,7 +86,12 @@ namespace SimpleNLG.Main.framework
 		 */ 
 			internal virtual string getForm(string feature)
 			{
-				return forms[feature];
+			    if (forms.ContainsKey(feature))
+			    {
+			        return forms[feature];
+			    }
+
+			    return null;
 			}
 		}
 
@@ -99,7 +104,7 @@ namespace SimpleNLG.Main.framework
 
 		internal IDictionary<Inflection, InflectionSet> inflVars; // the inflectional variants
 
-		internal Inflection defaultInfl; // the default inflectional variant
+		internal Inflection? defaultInfl; // the default inflectional variant
 
 
 
@@ -168,7 +173,7 @@ namespace SimpleNLG.Main.framework
 			Category = currentWord.Category;
 			id = currentWord.Id;
 			inflVars = currentWord.InflectionalVariants;
-			defaultInfl = (Inflection) currentWord.getDefaultInflectionalVariant();
+			defaultInfl = currentWord.getDefaultInflectionalVariant();
 			Features = currentWord;
 		}
 
@@ -250,7 +255,7 @@ namespace SimpleNLG.Main.framework
 	    /**
 	     * @return the default inflectional variant
 	     */
-		public virtual object getDefaultInflectionalVariant()
+		public virtual Inflection? getDefaultInflectionalVariant()
 		{
 		// return getFeature(LexicalFeature.DEFAULT_INFL);
 			return defaultInfl;

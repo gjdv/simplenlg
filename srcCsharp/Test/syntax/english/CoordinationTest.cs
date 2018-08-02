@@ -20,7 +20,7 @@
  */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
@@ -42,7 +42,7 @@ namespace SimpleNLG.Test.syntax.english
      * @author Albert Gatt
      * 
      */
-    [TestClass]
+    [TestFixture]
     public class CoordinationTest : SimpleNLG4Test
     {
         public CoordinationTest() : this(null)
@@ -57,7 +57,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Check that empty coordinate phrases are not realised as "null"
          */
-        [TestMethod]
+        [Test]
         public virtual void emptyCoordinationTest()
         {
             // first a simple phrase with no coordinates
@@ -72,7 +72,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test pre and post-modification of coordinate VPs inside a sentence.
          */
-        [TestMethod]
+        [Test]
         public virtual void testModifiedCoordVP()
         {
             CoordinatedPhraseElement coord = phraseFactory.createCoordinatedPhrase(getUp, fallDown);
@@ -114,7 +114,7 @@ namespace SimpleNLG.Test.syntax.english
          * and coordinateVP. This is a version in which we create the coordinate
          * phrase directly.
          */
-        [TestMethod]
+        [Test]
         public virtual void testCoordinateVPComplexSubject()
         {
             // "As a result of the procedure the patient had an adverse contrast media reaction and went into cardiogenic shock."
@@ -157,7 +157,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Test setting a conjunction to null
          */
-        [TestMethod]
+        [Test]
         public virtual void testNullConjunction()
         {
             SPhraseSpec p = phraseFactory.createClause("I", "be", "happy");
@@ -180,7 +180,7 @@ namespace SimpleNLG.Test.syntax.english
          * Check that the negation feature on a child of a coordinate phrase remains
          * as set, unless explicitly set otherwise at the parent level.
          */
-        [TestMethod]
+        [Test]
         public virtual void testNegationFeature()
         {
             SPhraseSpec s1 = phraseFactory.createClause("he", "have", "asthma");

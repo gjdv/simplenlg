@@ -20,12 +20,15 @@
  */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Reflection;
+using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
 using SimpleNLG.Main.server;
 using SimpleNLG.Main.xmlrealiser;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.lexicon.english
 {
@@ -36,14 +39,16 @@ namespace SimpleNLG.Test.lexicon.english
      * @author Dave Westwater, Data2Text Ltd
      *
      */
-    [TestClass]
+    [TestFixture]
     public class MultipleLexiconTest
     {
-        internal static string BASE_DIRECTORY = @"../../";
+        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
 
         // NIH, XML lexicon location
         internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             "Resources/NIHLexicon/lexAccess2011.data";
+                                             "Resources/NIHLexicon/lexAccess2011.sqlite";
+
+        internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
         internal static string XML_FILENAME =
             BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/default-lexicon.xml";
@@ -52,43 +57,50 @@ namespace SimpleNLG.Test.lexicon.english
         internal MultipleLexicon lexicon;
 
 
-        [TestInitialize]
+        [SetUp]
         public virtual void setUp()
         {
             try
             {
                 Properties prop = new Properties();
-                prop.load("Resources/lexicon.properties");
+                prop.load(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/lexicon.properties");
 
                 string xmlFile = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
                                  prop.getProperty("XML_FILENAME");
                 string dbFile = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
                                 prop.getProperty("DB_FILENAME");
-                lexicon = new MultipleLexicon(new XMLLexicon(xmlFile), new NIHDBLexicon(dbFile));
+                string lexiconTypeStr = prop.getProperty("LexiconType");
+                XMLRealiser.LexiconType lexiconType = XMLRealiser.LexiconType.NIHDB_HSQL;
+                if (lexiconTypeStr == "NIH_SQLITE")
+                {
+                    lexiconType = XMLRealiser.LexiconType.NIHDB_SQLITE;
+                }
+
+                lexicon = new MultipleLexicon(new XMLLexicon(xmlFile), new NIHDBLexicon(dbFile, lexiconType));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
                 Console.Write(e.StackTrace);
                 lexicon = new MultipleLexicon(new XMLLexicon(XML_FILENAME),
-                    new NIHDBLexicon(DB_FILENAME));
+                    new NIHDBLexicon(DB_FILENAME, LEXICON_TYPE));
             }
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public virtual void tearDown()
         {
             lexicon.close();
         }
 
-        [TestMethod]
+        [Test]
         public virtual void basicLexiconTests()
         {
             SharedLexiconTests tests = new SharedLexiconTests();
             tests.doBasicTests(lexicon);
         }
 
-        [TestMethod]
+        [Test]
         public virtual void multipleSpecificsTests()
         {
             // try to get word which is only in NIH lexicon

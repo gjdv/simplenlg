@@ -21,10 +21,11 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleNLG.Main.format.english;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.phrasespec;
+using Assert = NUnit.Framework.Assert;
 
 namespace SimpleNLG.Test.syntax.english
 {
@@ -34,7 +35,7 @@ namespace SimpleNLG.Test.syntax.english
     using SPhraseSpec = SPhraseSpec;
 
     // HTMLFormatter and HTMLFormatterTest ~ author James Christie, but taken from TextFormatter and TextFormatterTest
-    [TestClass]
+    [TestFixture]
     public class HTMLFormatterTest : SimpleNLG4Test
     {
         public HTMLFormatterTest() : this(null)
@@ -51,7 +52,7 @@ namespace SimpleNLG.Test.syntax.english
         {
         }
 
-        [TestCleanup]
+        [OneTimeTearDown]
         public override void tearDown()
         {
             base.tearDown();
@@ -61,7 +62,7 @@ namespace SimpleNLG.Test.syntax.english
         /**
          * Check the correct [part] web page contents are being generated
          */
-        [TestMethod]
+        [Test]
         public void testWebPageContent()
         {
             // now build a document ... 
