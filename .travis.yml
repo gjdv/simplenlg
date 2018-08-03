@@ -22,19 +22,19 @@ matrix:
       install:
         - nuget restore srcCsharp/SimpleNLG.sln
         - nuget install NUnit.Runners -Version 2.6.7 -OutputDirectory testrunner
-      before_script:
-        - WGET="travis_retry wget --continue --tries=20 --waitretry=10 --retry-connrefused --no-dns-cache --timeout 300"
-        # http://blog.wezeku.com/2016/10/09/using-system-data-sqlite-under-linux-and-mono/
-        - $WGET https://system.data.sqlite.org/downloads/1.0.108.0/sqlite-netFx-full-source-1.0.108.0.zip
-        - CURDIR=`pwd`
-        - mkdir ./sqliteBuild
-        # jar xvf is more robust than unzip https://askubuntu.com/questions/54904/unzip-error-end-of-central-directory-signature-not-found
-        - cd ./sqliteBuild/
-        - jar xvf $CURDIR/sqlite-netFx-full-source-1.0.108.0.zip
-        - cd $CURDIR
-        - chmod +x ./sqliteBuild/Setup/compile-interop-assembly-release.sh
-        - ./sqliteBuild/Setup/compile-interop-assembly-release.sh
-        - cp ./sqliteBuild/bin/2013/Release/bin/libSQLite.Interop.so srcCsharp/packages/System.Data.SQLite.Core.1.0.108.0/build/net45
+#      before_script:
+#        - WGET="travis_retry wget --continue --tries=20 --waitretry=10 --retry-connrefused --no-dns-cache --timeout 300"
+#        # http://blog.wezeku.com/2016/10/09/using-system-data-sqlite-under-linux-and-mono/
+#        - $WGET https://system.data.sqlite.org/downloads/1.0.108.0/sqlite-netFx-full-source-1.0.108.0.zip
+#        - CURDIR=`pwd`
+#        - mkdir ./sqliteBuild
+#        # jar xvf is more robust than unzip https://askubuntu.com/questions/54904/unzip-error-end-of-central-directory-signature-not-found
+#        - cd ./sqliteBuild/
+#        - jar xvf $CURDIR/sqlite-netFx-full-source-1.0.108.0.zip
+#        - cd $CURDIR
+#        - chmod +x ./sqliteBuild/Setup/compile-interop-assembly-release.sh
+#        - ./sqliteBuild/Setup/compile-interop-assembly-release.sh
+#        - cp ./sqliteBuild/bin/2013/Release/bin/libSQLite.Interop.so srcCsharp/packages/System.Data.SQLite.Core.1.0.108.0/build/net45
       script:
        - msbuild /p:Configuration=Release srcCsharp/SimpleNLG.sln
        - mono ./testrunner/NUnit.Runners.2.6.7/tools/nunit-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll

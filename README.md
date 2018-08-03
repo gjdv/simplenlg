@@ -27,6 +27,7 @@ Known issues
 
 * Client/Server setup of SimpleNLG does not work (and fails the unit test); this unit test is disabled; 
 * NIHDB lexicon functionality only available through the converted SQLITE databases; No proper way identified (yet) to directly use HSQLdb directly from C#
+* SQLite.Interop not available for Mono; building it using Travis did not yet work out, hence the 18 unit tests depending on SQLite fail on Mono (but succeed in Visual Studio)
 
 &nbsp;
 
