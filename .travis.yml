@@ -26,6 +26,7 @@ matrix:
         - WGET="travis_retry wget --continue --tries=20 --waitretry=10 --retry-connrefused --no-dns-cache --timeout 300"
         # http://blog.wezeku.com/2016/10/09/using-system-data-sqlite-under-linux-and-mono/
         - $WGET https://system.data.sqlite.org/downloads/1.0.108.0/sqlite-netFx-full-source-1.0.108.0.zip
+        - mkdir ./sqliteBuild
         - unzip sqlite-netFx-full-source-1.0.108.0.zip -d ./sqliteBuild/
         - chmod +x ./sqliteBuild/Setup/compile-interop-assembly-release.sh
         - ./sqliteBuild/Setup/compile-interop-assembly-release.sh
