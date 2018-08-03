@@ -19,9 +19,6 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using System;
-using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 using SimpleNLG.Main.framework;
 using SimpleNLG.Main.lexicon;
@@ -60,10 +57,8 @@ namespace SimpleNLG.Test.syntax.english
 
         private Lexicon lexicon;
 
-        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
         // DB location -- change this to point to the lex access data dir
-        internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2011.sqlite";
+        internal static string DB_FILENAME = "Resources/NIHLexicon/lexAccess2011.sqlite";
 
         private XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 

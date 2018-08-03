@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Text;
 using SimpleNLG.Main.lexicon.util.lexCheck.Lib;
 
@@ -59,8 +57,7 @@ namespace SimpleNLG.Main.lexicon.util.lexCheck.Compl
                 else
 
                 {
-                    string baseDir = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-                    inFile = baseDir + Path.DirectorySeparatorChar + "Resources/NIHLexicon/prepositions.data";
+                    inFile = "Resources/NIHLexicon/prepositions.data";
 
                     @in = new System.IO.StreamReader(inFile);
                 }

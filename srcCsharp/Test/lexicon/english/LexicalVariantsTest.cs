@@ -21,8 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
@@ -67,11 +65,8 @@ namespace SimpleNLG.Test.lexicon.english
         // realiser
         internal Realiser realiser;
 
-        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
         // DB location -- change this to point to the lex access data dir
-        internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             "Resources/NIHLexicon/lexAccess2011.sqlite";
+        internal static string DB_FILENAME = "Resources/NIHLexicon/lexAccess2011.sqlite";
 
         internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
@@ -86,7 +81,7 @@ namespace SimpleNLG.Test.lexicon.english
             try
             {
                 Properties prop = new Properties();
-                prop.load(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/lexicon.properties");
+                prop.load("Resources/lexicon.properties");
 
                 string lexiconType = prop.getProperty("LexiconType");
 
@@ -99,22 +94,19 @@ namespace SimpleNLG.Test.lexicon.english
                 if (lexiconType == "NIH" || lexiconType == "NIH_HSQL")
                 {
                     // NIH lexicon
-                    lexicon = new NIHDBLexicon(
-                        BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + prop.getProperty("DB_FILENAME"),
+                    lexicon = new NIHDBLexicon(prop.getProperty("DB_FILENAME"),
                         XMLRealiser.LexiconType.NIHDB_HSQL);
                 }
                 else if (lexiconType == "NIH_SQLITE")
                 {
                     // NIH lexicon
-                    lexicon = new NIHDBLexicon(
-                        BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + prop.getProperty("DB_FILENAME"),
+                    lexicon = new NIHDBLexicon(prop.getProperty("DB_FILENAME"),
                         XMLRealiser.LexiconType.NIHDB_SQLITE);
                 }
                 else
                 {
                     // XML lexicon
-                    lexicon = new XMLLexicon(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             prop.getProperty("XML_FILENAME"));
+                    lexicon = new XMLLexicon(prop.getProperty("XML_FILENAME"));
                 }
             }
             catch (Exception)

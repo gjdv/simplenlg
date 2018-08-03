@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using SimpleNLG.Main.lexicon.util.lexCheck.Lib;
 
 namespace SimpleNLG.Main.lexicon.util.lexCheck.CheckCont
@@ -137,8 +135,7 @@ namespace SimpleNLG.Main.lexicon.util.lexCheck.CheckCont
 
             {
                 useDefaultFileFlag = true;
-                string baseDir = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-                irregExpFile = baseDir + Path.DirectorySeparatorChar + "Resources/NIHLexicon/irregExceptions.data";
+                irregExpFile = "Resources/NIHLexicon/irregExceptions.data";
             }
 
             string defaultStr = "";

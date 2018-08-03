@@ -24,7 +24,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Threading;
 using SimpleNLG.Main.xmlrealiser;
 
@@ -63,9 +62,7 @@ namespace SimpleNLG.Main.server
          * will be searched for the lexicon file. Otherwise, the path below will
          * be used.
          */
-	    static string baseDirectory = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
-        static string lexiconPath = baseDirectory + System.IO.Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2013.sqlite";
+        static string lexiconPath = "Resources/NIHLexicon/lexAccess2013.sqlite";
 	    static XMLRealiser.LexiconType lexiconType = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
 		// control the run loop

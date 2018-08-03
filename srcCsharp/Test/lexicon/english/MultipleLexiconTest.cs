@@ -20,8 +20,6 @@
  */
 
 using System;
-using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 using SimpleNLG.Main.features;
 using SimpleNLG.Main.framework;
@@ -42,16 +40,12 @@ namespace SimpleNLG.Test.lexicon.english
     [TestFixture]
     public class MultipleLexiconTest
     {
-        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
         // NIH, XML lexicon location
-        internal static string DB_FILENAME = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                             "Resources/NIHLexicon/lexAccess2011.sqlite";
+        internal static string DB_FILENAME = "Resources/NIHLexicon/lexAccess2011.sqlite";
 
         internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
-        internal static string XML_FILENAME =
-            BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/default-lexicon.xml";
+        internal static string XML_FILENAME = "Resources/default-lexicon.xml";
 
         // multi lexicon
         internal MultipleLexicon lexicon;
@@ -63,12 +57,10 @@ namespace SimpleNLG.Test.lexicon.english
             try
             {
                 Properties prop = new Properties();
-                prop.load(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/lexicon.properties");
+                prop.load("Resources/lexicon.properties");
 
-                string xmlFile = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                 prop.getProperty("XML_FILENAME");
-                string dbFile = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar +
-                                prop.getProperty("DB_FILENAME");
+                string xmlFile = prop.getProperty("XML_FILENAME");
+                string dbFile = prop.getProperty("DB_FILENAME");
                 string lexiconTypeStr = prop.getProperty("LexiconType");
                 XMLRealiser.LexiconType lexiconType = XMLRealiser.LexiconType.NIHDB_HSQL;
                 if (lexiconTypeStr == "NIH_SQLITE")

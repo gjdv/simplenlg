@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Xml;
 using SimpleNLG.Main.features;
 
@@ -87,8 +86,7 @@ namespace SimpleNLG.Main.lexicon
 
 		public XMLLexicon()
 		{
-		    string baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            Uri lexiconUri = new Uri(baseDir + Path.DirectorySeparatorChar + "Resources/default-lexicon.xml", UriKind.Absolute);
+            Uri lexiconUri = new Uri("Resources/default-lexicon.xml", UriKind.Relative);
 		    if (!File.Exists(lexiconUri.ToAbsolute().AbsolutePath))
 		    {
 		        throw new FileNotFoundException("Lexicon file does not exist: " + lexiconUri.ToAbsolute().AbsolutePath);

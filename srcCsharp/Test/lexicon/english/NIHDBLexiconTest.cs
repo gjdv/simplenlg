@@ -4,8 +4,6 @@
  
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Threading;
 using NUnit.Framework;
 using SimpleNLG.Main.features;
@@ -34,10 +32,8 @@ namespace SimpleNLG.Test.lexicon.english
     {
         internal NIHDBLexicon lexicon = null;
 
-        internal static string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
         // DB location -- change this to point to the lex access data dir
-        internal static string DB_FILENAME = BASE_DIRECTORY + Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2011.sqlite";
+        internal static string DB_FILENAME = "Resources/NIHLexicon/lexAccess2011.sqlite";
 
         internal static XMLRealiser.LexiconType LEXICON_TYPE = XMLRealiser.LexiconType.NIHDB_SQLITE;
 
@@ -49,7 +45,7 @@ namespace SimpleNLG.Test.lexicon.english
             try
             {
                 Properties prop = new Properties();
-                prop.load(BASE_DIRECTORY + Path.DirectorySeparatorChar + "Resources/lexicon.properties");
+                prop.load("Resources/lexicon.properties");
 
                 string lexiconPath = prop.getProperty("DB_FILENAME");
                 string lexiconTypeStr = prop.getProperty("LexiconType");
@@ -61,8 +57,7 @@ namespace SimpleNLG.Test.lexicon.english
 
                 if (null != lexiconPath)
                 {
-                    lexicon = new NIHDBLexicon(BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + lexiconPath,
-                        lexiconType);
+                    lexicon = new NIHDBLexicon(lexiconPath, lexiconType);
                 }
             }
             catch (Exception e)

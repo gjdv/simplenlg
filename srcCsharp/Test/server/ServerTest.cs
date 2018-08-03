@@ -36,6 +36,7 @@ namespace SimpleNLG.Test.server
      * @author Roman Kutlak
      */
     [TestFixture]
+    [Ignore("Ignore SimpleNLG Server test for now")]
     public class ServerTest
     {
         private SimpleServer serverapp;

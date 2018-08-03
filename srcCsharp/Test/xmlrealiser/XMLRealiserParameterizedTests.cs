@@ -2,10 +2,8 @@
  * Ported to C# by Gert-Jan de Vries
  */
 
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using NUnit.Framework;
 using SimpleNLG.Main.xmlrealiser;
 using SimpleNLG.Main.xmlrealiser.wrapper;
@@ -27,9 +25,7 @@ namespace SimpleNLG.Test.xmlrealiser
         [SetUp]
         public void setUpBeforeClass()
         {
-            string BASE_DIRECTORY = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
-
-            string lexDB = BASE_DIRECTORY + System.IO.Path.DirectorySeparatorChar + "Resources/NIHLexicon/lexAccess2013.sqlite";
+            string lexDB = "Resources/NIHLexicon/lexAccess2013.sqlite";
             LexiconType lexType = LexiconType.NIHDB_SQLITE; // Some tests require this.
             XMLRealiser.setLexicon(lexType, lexDB);
         }
