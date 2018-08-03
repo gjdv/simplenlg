@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/gjdv/simplenlg.svg?branch=master)](https://travis-ci.org/gjdv/simplenlg)
+
+| Java: | [![Build Status](https://travis-ci.org/gjdv/simplenlg.svg?branch=master)](https://travis-ci.org/gjdv/simplenlg) |
+| ----- | --- |
+| C#:   | [![Build status](https://ci.appveyor.com/api/projects/status/w7ap7ro4bi477jsc/branch/master?svg=true)](https://ci.appveyor.com/project/gjdv/simplenlg/branch/master) |
+
 
 SimpleNLG fork by GJdV
 ======================
@@ -18,7 +22,7 @@ This port to C# was made for better integration in C# projects. Note that the C#
 The ported unit tests were used to verify correctness of the port. Currently only the server test fails (see "Known Issues").
 In order to remove all dependency to java, the HSQLdb containing the NIHDB lexicon was converted to SQLITE. If there is a way to interact from C# directly (without IKVM or other wrappers) to HSQLdb, please let me know. There are some placeholders (outcommented) in the code to accomodate for this functionality. To identify which mode (HSQL or SQLITE) to run, the lexicon-type (used e.g., in lexicon.properties) has been extended with the options NIH_SQLITE and NIH_HSQL; the original value NIH defaults to NIH_HSQL. These SQLITE databases are located in \SimpleNLG\srcCsharp\Resources\NIHLexicon as zip-files and should be extracted before running the code.
 
-This port also includes the sources of [LexAccess](https://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexAccess/current/web/download.html) and some dependencies from [Lexical Tools](https://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lvg/current/web/index.html).
+This port also includes the sources of [LexAccess (v2016)](https://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexAccess/current/web/download.html) and some dependencies from [Lexical Tools (v2018)](https://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lvg/current/web/index.html).
 Various versions of [NIH Lexicon](https://lsg3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/index.html) were converted from HSQLdb to SQLITE.
 Please note their [Terms and conditions](https://lsg3.nlm.nih.gov/LexSysGroup/Docs/termsAndConditions.html), which also apply to the C# port of the respective code.
 
@@ -28,7 +32,7 @@ Known issues
 
 * Client/Server setup of SimpleNLG does not work (and fails the unit test); this unit test is disabled; 
 * NIHDB lexicon functionality only available through the converted SQLITE databases; No proper way identified (yet) to directly use HSQLdb directly from C#
-* SQLite.Interop.dll is not available for Mono; building it using Travis did not yet work out, hence the 18 unit tests depending on SQLite fail on Mono (but pass in Visual Studio)
+* SQLite.Interop.dll is not available for Mono; building it using Travis did not yet work out, hence the 18 unit tests depending on SQLite fail on Mono (but pass in Visual Studio) -> moved to appveyor for C# buildstatus
 
 &nbsp;
 

@@ -1,0 +1,45 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: 1.0.{build}
+
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Build worker image (VM template)
+image: Visual Studio 2017
+
+# clone directory
+clone_folder: c:\projects\simpleNLG
+
+# scripts that run after cloning repository
+#install:
+
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+platform:
+  - x86
+  - x64
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  parallel: true                                          # enable MSBuild parallel builds
+  project: c:\projects\simpleNLG\srcCsharp\SimpleNLG.sln  # path to Visual Studio solution or project
+
+# MSBuild verbosity level
+#  verbosity: quiet|minimal|normal|detailed
+
+# scripts to run before build
+before_build:
+  - nuget restore srcCsharp/SimpleNLG.sln
+  - 7z x c:\projects\simpleNLG\srcCsharp\Resources\NIHLexicon\*.zip -oc:\projects\simpleNLG\srcCsharp\Resources\NIHLexicon\

@@ -10,18 +10,18 @@ matrix:
       after_script: mvn clean
       jdk: openjdk7
 
-    - language: csharp
-      solution: srcCsharp/SimpleNLG.sln
-      env: 
-        - RESOURCE_DIR=srcCsharp/Resources/NIHLexicon/
-      before_install:
-        - sudo apt-get install unzip
-        - unzip $RESOURCE_DIR/lexAccess2011.sqlite.zip -d $RESOURCE_DIR
-        - unzip $RESOURCE_DIR/lexAccess2013.sqlite.zip -d $RESOURCE_DIR
-        - unzip $RESOURCE_DIR/lexAccess2016.sqlite.zip -d $RESOURCE_DIR
-      install:
-        - nuget restore srcCsharp/SimpleNLG.sln
-        - nuget install NUnit.Runners -Version 2.6.7 -OutputDirectory testrunner
+#    - language: csharp
+#      solution: srcCsharp/SimpleNLG.sln
+#      env: 
+#        - RESOURCE_DIR=srcCsharp/Resources/NIHLexicon/
+#      before_install:
+#        - sudo apt-get install unzip
+#        - unzip $RESOURCE_DIR/lexAccess2011.sqlite.zip -d $RESOURCE_DIR
+#        - unzip $RESOURCE_DIR/lexAccess2013.sqlite.zip -d $RESOURCE_DIR
+#        - unzip $RESOURCE_DIR/lexAccess2016.sqlite.zip -d $RESOURCE_DIR
+#      install:
+#        - nuget restore srcCsharp/SimpleNLG.sln
+#        - nuget install NUnit.Runners -Version 2.6.7 -OutputDirectory testrunner
 #      before_script:
 #        - WGET="travis_retry wget --continue --tries=20 --waitretry=10 --retry-connrefused --no-dns-cache --timeout 300"
 #        # http://blog.wezeku.com/2016/10/09/using-system-data-sqlite-under-linux-and-mono/
@@ -35,6 +35,6 @@ matrix:
 #        - chmod +x ./sqliteBuild/Setup/compile-interop-assembly-release.sh
 #        - ./sqliteBuild/Setup/compile-interop-assembly-release.sh
 #        - cp ./sqliteBuild/bin/2013/Release/bin/libSQLite.Interop.so srcCsharp/packages/System.Data.SQLite.Core.1.0.108.0/build/net45
-      script:
-       - msbuild /p:Configuration=Release srcCsharp/SimpleNLG.sln
-       - mono ./testrunner/NUnit.Runners.2.6.7/tools/nunit-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll
+#      script:
+#       - msbuild /p:Configuration=Release srcCsharp/SimpleNLG.sln
+#       - mono ./testrunner/NUnit.Runners.2.6.7/tools/nunit-console.exe ./srcCsharp/bin/Release/SimpleNLGUnitTests.dll
